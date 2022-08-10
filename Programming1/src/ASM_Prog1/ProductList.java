@@ -1,23 +1,22 @@
 package ASM_Prog1;
 
 import java.io.*;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+import java.util.Objects;
 
 public class ProductList
 {
     private static final String delimiter = ",";
     private List<List<String>> productList = new ArrayList<>();
 
-    private List<List<String>> loadProductList() throws IOException, URISyntaxException
+    private List<List<String>> loadProductList() throws IOException
     {
         String filePath = "src\\Product.csv";
         return ProductList.read(filePath);
     }
 
-    public ProductList() throws IOException, URISyntaxException
+    public ProductList() throws IOException
     {
         this.productList = loadProductList();
     }
@@ -53,58 +52,44 @@ public class ProductList
         }
     }
 
-    public static List<String> enterProduct()
+    public void addNewProduct(Product productInput)
     {
-        Category category = new Category();
-        Scanner scanner = new Scanner(System.in);
-        List<String> product = new ArrayList<>();
-        String productID = "P" + ((int) (Math.random() * 999999) + 1);
-        System.out.println("--ProductID is " + productID + "--");
-        System.out.println("--Product Name--");
-        String productName = scanner.nextLine();
-        System.out.println("--Category--");
-        category.displayCategory();
-        System.out.println("Please enter corresponding category");
-        String categoryInput = scanner.nextLine();
-        while (!category.checkValidCategory(categoryInput))
-        {
-            System.out.println("Invalid input, please re-enter");
-            category.displayCategory();
-            categoryInput = scanner.nextLine();
-        }
-        System.out.println("--Unit--");
-        String unit = scanner.nextLine();
-        System.out.println("--Quantity--");
-        String quantity = scanner.nextLine();
-        System.out.println("--Price--");
-        String price = scanner.nextLine();
-        product.add(productID);
-        product.add(productName);
-        product.add(categoryInput);
-        product.add(unit);
-        product.add(quantity);
-        product.add(price);
-        return product;
-    }
-
-    public void addNewProduct()
-    {
-        List<String> newProduct = ProductList.enterProduct();
+        Product product = new Product();
+        List<String> newProduct = productInput.convertToListString();
         this.productList.add(newProduct);
     }
 
-    public void saveToCSV(String pathname) throws IOException
+    public void removeProduct(String productID)
     {
-        File file = new File(pathname);
-        FileWriter fileWriter = new FileWriter(file);
+        List<List<String>> productList = getProductList();
+        for (List<String> products : productList)
+        {
+            if (Objects.equals(products.get(0), productID))
+            {
+                productList.remove(products);
+                break;
+            }
+        }
+    }
+
+    public void saveToCSV() throws IOException
+    {
+        File fileSrc = new File("src\\Product.csv");
+        File fileOut = new File("out\\production\\untitled\\Product.csv");
+        FileWriter fileWriterSrc = new FileWriter(fileSrc);
+        FileWriter fileWriterOut = new FileWriter(fileOut);
         for (List<String> strings : this.productList)
         {
             String newProductString = String.valueOf(strings);
+
             newProductString = newProductString.replace("[", "");
             newProductString = newProductString.replace("]", "");
-            fileWriter.write(newProductString + "\n");
+            newProductString = newProductString.replace(", ", ",");
+            fileWriterSrc.write(newProductString + "\n");
+            fileWriterOut.write(newProductString + "\n");
         }
-        fileWriter.close();
+        fileWriterSrc.close();
+        fileWriterOut.close();
     }
 }
 

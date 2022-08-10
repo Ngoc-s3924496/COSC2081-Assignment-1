@@ -8,7 +8,5 @@ public class Main {
 
     public static void main(String[] args) throws IOException, URISyntaxException
     {
-        String pathname = "src\\Product.csv";
-	    ProductList productList = new ProductList();
     }
 }

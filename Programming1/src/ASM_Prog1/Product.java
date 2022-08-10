@@ -19,7 +19,6 @@ public class Product
     public Product(String productName, String category, String unit, int quantity, int price)
     {
         this.productID = "P" + ((int) (Math.random() * 999999) + 1);
-        ;
         this.productName = productName;
         this.category = category;
         this.unit = unit;

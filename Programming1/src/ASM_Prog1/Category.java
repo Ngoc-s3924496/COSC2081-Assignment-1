@@ -18,7 +18,7 @@ public class Category
 
     public void addCategory(String newCategory)
     {
-        availableCategory.add(newCategory);
+        this.availableCategory.add(newCategory);
     }
 
     public List<String> getAvailableCategory()
@@ -37,17 +37,4 @@ public class Category
         System.out.println(result);
     }
 
-    public boolean checkValidCategory(String input)
-    {
-        boolean checked = false;
-        for (String s : availableCategory)
-        {
-            if (input.matches(s))
-            {
-                checked = true;
-                break;
-            }
-        }
-        return checked;
-    }
 }
