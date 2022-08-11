@@ -1,0 +1,19 @@
+CUSTOMER_ID,STATUS,USERNAME,PASSWORD,FULL_NAME,PHONE_NUMBER,MEMBERSHIP_RANK
+C391245,Member,An Vuong,Rmit@3912345,Vuong Phuong An,0929614488,Gold
+C392347,Member,Anh Hoang,Rmit@3912347,Hoang Thao Anh,0971239125,Silver
+C391238,Member,Anh Nguyennnn,Rmit@3912348, Ngyen Thuc Anh,0903377608,Gold
+C912350,Member,Anh Tran,Rmit@3912350,Tran Quynh Anh,0834212407,Silver
+C391252,Member,Duy Le,Rmit@3912352,Le Xuan Duy,0939348675,Gold
+C392354,Member,Hien Ha,Rmit@3912354,Ha Binh Hien,0935822799,Gold
+C391235,Member,Huy Hoang,Rmit@3912355,Hoang Tuan Gia Huy,0796164890,Silver
+C312357,Member,Linh Vo,Rmit@3912357,Vo Ha Khanh Linh,0981127809,Silver
+C391358,Member,Long Nguyen,Rmit@3912358,Nguyen Quynh Long,0902680705,Gold
+C391259,Member,Ly Huynh,Rmit@3912359,Huynh Ly Ly,0904254583,Platinum
+C392360,Member,Mai Pham,Rmit@3912360,Pham Hong Mai,0904323435,Platinum
+C392362,Member,Nhat Ho,Rmit@3912362,Ho Minh Nhat,0902303453,Silver
+C391263,Member,Tien Vu,Rmit@3912363,Vu Phuc Thuy Tien,0931878635,Gold
+C912364,Member,Tu Tran,Rmit@3912364,Tran Khue Tu,0328104791,Platinum
+C206677,Member,Anh342,Rmit@3912349,Tran Nhat Anh,00234242342,None
+C217157,Member,thachngo,123,Thach Ngo,012123123131,None
+C086893,Member,thachngo,123,null,null,None
+C426378,Member,thachngo,123,Thach Ngo,0234131231,None
