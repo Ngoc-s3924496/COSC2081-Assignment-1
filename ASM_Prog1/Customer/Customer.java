@@ -1,7 +1,7 @@
-package FinalProject.Customer;
+package ASM_Prog1.Customer;
 
-import FinalProject.Member.Member;
-import FinalProject.Product.Product;
+import ASM_Prog1.Member.Member;
+import ASM_Prog1.Product.Product;
 
 import java.io.*;
 import java.util.*;
