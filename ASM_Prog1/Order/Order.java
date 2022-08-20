@@ -20,6 +20,34 @@ public class Order {
         this.dateTime = dateTime;
     }
 
+    public static List<String> getOrderByDate(String day, String month, String year){
+        String date = day + "/" + month + "/" + year;
+        List<String> dailyOrder = null;
+        List<List<String>> orderList = OrderList.getOrderList();
+        for (List<String> strings : orderList) {
+            String orderDate = strings.get(7);
+            if (date.equalsIgnoreCase(orderDate)) {
+                dailyOrder.add(strings.get(1));
+            }
+        }
+        return dailyOrder;
+    }
+
+    public static int getRevenueByDate(String day, String month, String year){
+        String date = day + "/" + month + "/" + year;
+        int dailyRevenue = 0;
+        List<List<String>> orderList = OrderList.getOrderList();
+        for (List<String> strings : orderList) {
+            String orderDate = strings.get(7);
+            if (date.equalsIgnoreCase(orderDate)) {
+                String orderTotalString = strings.get(5);
+                int orderTotalInt = Integer.parseInt(orderTotalString);
+                dailyRevenue += orderTotalInt;
+            }
+        }
+        return dailyRevenue;
+    }
+
     @Override
     public String toString()
     {

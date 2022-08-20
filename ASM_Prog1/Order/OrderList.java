@@ -8,8 +8,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class OrderList {
-    private static final String delimiter = ",";
-    private List<List<String>> orderList = new ArrayList<>();
+    private static List<List<String>> orderList;
 
     private List<List<String>> loadOrderList() throws IOException
     {
@@ -22,28 +21,10 @@ public class OrderList {
         this.orderList = loadOrderList();
     }
 
-    public List<List<String>> getOrderListList()
-    {
+    public static List<List<String>> getOrderList() {
         return orderList;
     }
 
-
-    private static List<List<String>> read(String csvFile) throws IOException
-    {
-        List<List<String>> finalArr = new ArrayList<>();
-        File file = new File(csvFile);
-        FileReader fileReader = new FileReader(file);
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-        String line;
-        List<String> arr;
-        while ((line = bufferedReader.readLine()) != null)
-        {
-            arr = List.of(line.split(delimiter));
-            finalArr.add(arr);
-        }
-        bufferedReader.close();
-        return finalArr;
-    }
 
     public void displayOrderList()
     {

@@ -8,7 +8,7 @@ import java.util.Objects;
 public class ProductList
 {
     private static final String delimiter = ",";
-    private List<List<String>> productList = new ArrayList<>();
+    private static List<List<String>> productList = new ArrayList<>();
 
     private List<List<String>> loadProductList() throws IOException
     {
@@ -21,7 +21,7 @@ public class ProductList
         this.productList = loadProductList();
     }
 
-    public List<List<String>> getProductList()
+    public static List<List<String>> getProductList()
     {
         return productList;
     }
