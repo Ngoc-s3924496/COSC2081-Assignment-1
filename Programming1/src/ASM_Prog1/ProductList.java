@@ -8,37 +8,45 @@ import java.util.Objects;
 public class ProductList
 {
     private static final String delimiter = ",";
-    private List<List<String>> productList = new ArrayList<>();
+    private final ArrayList<Product> productList;
 
-    private List<List<String>> loadProductList() throws IOException
+    private ArrayList<Product> setProductList() throws IOException
     {
         String filePath = "src\\Product.csv";
-        return ProductList.read(filePath);
+        return ProductList.readFile(filePath);
     }
 
     public ProductList() throws IOException
     {
-        this.productList = loadProductList();
+        this.productList = setProductList();
     }
 
-    public List<List<String>> getProductList()
+    public ArrayList<Product> getProductList()
     {
         return productList;
     }
 
 
-    private static List<List<String>> read(String csvFile) throws IOException
+    private static ArrayList<Product> readFile(String csvFile) throws IOException
     {
-        List<List<String>> finalArr = new ArrayList<>();
+        ArrayList<Product> finalArr = new ArrayList<>();
         File file = new File(csvFile);
         FileReader fileReader = new FileReader(file);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         String line;
         List<String> arr;
+        bufferedReader.readLine();
         while ((line = bufferedReader.readLine()) != null)
         {
             arr = List.of(line.split(delimiter));
-            finalArr.add(arr);
+            Product product = new Product();
+            product.setProductID("P" + ((int) (Math.random() * 999999) + 1));
+            product.setProductName(arr.get(1));
+            product.setCategory(arr.get(2));
+            product.setUnit(arr.get(3));
+            product.setQuantity(Integer.parseInt(arr.get(4)));
+            product.setPrice(Integer.parseInt(arr.get(5)));
+            finalArr.add(product);
         }
         bufferedReader.close();
         return finalArr;
@@ -46,7 +54,7 @@ public class ProductList
 
     public void displayProductList()
     {
-        for (List<String> strings : this.productList)
+        for (Product strings : this.productList)
         {
             System.out.println(strings);
         }
@@ -55,16 +63,15 @@ public class ProductList
     public void addNewProduct(Product productInput)
     {
         Product product = new Product();
-        List<String> newProduct = productInput.convertToListString();
-        this.productList.add(newProduct);
+        this.productList.add(productInput);
     }
 
     public void removeProduct(String productID)
     {
-        List<List<String>> productList = getProductList();
-        for (List<String> products : productList)
+        ArrayList<Product> productList = getProductList();
+        for (Product products : productList)
         {
-            if (Objects.equals(products.get(0), productID))
+            if (Objects.equals(products.getProductID(), productID))
             {
                 productList.remove(products);
                 break;
@@ -78,15 +85,10 @@ public class ProductList
         File fileOut = new File("out\\production\\untitled\\Product.csv");
         FileWriter fileWriterSrc = new FileWriter(fileSrc);
         FileWriter fileWriterOut = new FileWriter(fileOut);
-        for (List<String> strings : this.productList)
+        for (Product product : this.productList)
         {
-            String newProductString = String.valueOf(strings);
-
-            newProductString = newProductString.replace("[", "");
-            newProductString = newProductString.replace("]", "");
-            newProductString = newProductString.replace(", ", ",");
-            fileWriterSrc.write(newProductString + "\n");
-            fileWriterOut.write(newProductString + "\n");
+            fileWriterSrc.write(product.CSVString() + "\n");
+            fileWriterOut.write(product.CSVString() + "\n");
         }
         fileWriterSrc.close();
         fileWriterOut.close();

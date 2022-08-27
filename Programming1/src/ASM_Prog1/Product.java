@@ -1,8 +1,5 @@
 package ASM_Prog1;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Product
 {
     private String productID;
@@ -26,16 +23,10 @@ public class Product
         this.price = price;
     }
 
-    public List<String> convertToListString()
+    public String CSVString()
     {
-        List<String> product = new ArrayList<>();
-        product.add(productID);
-        product.add(productName);
-        product.add(category);
-        product.add(unit);
-        product.add(String.valueOf(quantity));
-        product.add(String.valueOf(price));
-        return product;
+        return String.format("%s, %s, %s, %s, %d, %d", getProductID(), getProductName(), getCategory(), getUnit(),
+                getQuantity(), getPrice());
     }
 
     @Override
