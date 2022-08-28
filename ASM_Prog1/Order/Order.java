@@ -7,9 +7,9 @@ import java.util.List;
 public class Order {
     private String orderID, status, userID, userName, dateTime;
     private List<Product> products;
-    private int totalPaid;
+    private double totalPaid;
     private boolean eventEffect;
-    public Order(String orderID, String status, String userID, String userName, List<Product> products, int totalPaid, boolean eventEffect, String dateTime) {
+    public Order(String orderID, String status, String userID, String userName, List<Product> products, double totalPaid, boolean eventEffect, String dateTime) {
         this.orderID = orderID;
         this.status = status;
         this.userID = userID;

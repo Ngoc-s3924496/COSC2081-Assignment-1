@@ -1,10 +1,12 @@
 package ASM_Prog1.Member;
 
 import ASM_Prog1.Customer.Customer;
+import ASM_Prog1.Event.Event;
 import ASM_Prog1.Order.Order;
 import ASM_Prog1.Product.Product;
 
 import java.io.*;
+import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -110,13 +112,13 @@ public class Member extends Customer {
         updateMembershipInfo();
     }
 
-    public Order makeOrder(List<Product> products) throws IOException {
+    public Order makeOrder(ArrayList<Product> products) throws IOException, ParseException {
         String orderID = randomID("O");
         while (verifyOrderID(orderID)) {
             orderID = randomID("O");
         }
         String status = "delivering";
-        int totalPaid = 0;
+        double totalPaid = 0;
 
         boolean eventEffect = false;
 
@@ -131,14 +133,16 @@ public class Member extends Customer {
                 totalPaid += (i.getQuantity() * i.getPrice());
             }
 //        Check eventEffect
-        if (eventEffect) {
-            totalPaid *= (80/100);
+        Event event = new Event();
+        Event currentEvent;
+        if ((currentEvent = event.checkEvent(dateTime.substring(0,10))) != null) {
+            totalPaid *= ((double) (100 - currentEvent.getPercentageDiscount()) / 100);
         }
 //        Check membership rank
             totalPaid = switch (membershipRanking.toLowerCase()) {
-                case "silver" -> totalPaid * (95 / 100);
-                case "gold" -> totalPaid * (90 / 100);
-                case "platinum" -> totalPaid * (85 / 100);
+                case "silver" -> totalPaid * 0.95;
+                case "gold" -> totalPaid * 0.9;
+                case "platinum" -> totalPaid * 0.85;
                 default -> totalPaid;
             };
         }
