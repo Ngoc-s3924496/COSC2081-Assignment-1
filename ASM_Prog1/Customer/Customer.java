@@ -1,4 +1,4 @@
-package ASM_Prog1.Customer;
+/*package ASM_Prog1.Customer;
 
 import ASM_Prog1.Member.Member;
 import ASM_Prog1.Product.Product;
@@ -140,3 +140,4 @@ public class Customer {
         reader.close();
     }
 }
+*/

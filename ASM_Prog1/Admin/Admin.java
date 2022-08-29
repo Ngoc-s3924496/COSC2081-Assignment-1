@@ -1,5 +1,6 @@
 package ASM_Prog1.Admin;
 
+import ASM_Prog1.Order.Order;
 import ASM_Prog1.Order.OrderList;
 import ASM_Prog1.Product.*;
 
@@ -51,5 +52,12 @@ public class Admin {
 
     public void viewOrders(OrderList orderList){
         orderList.displayOrderList();
+    }
+    public void viewUserOrders(OrderList orderList){
+        Order order = new Order();
+        Scanner inputObj = new Scanner(System.in);
+        System.out.println("Enter User ID: ");
+        String userID = inputObj.nextLine();
+        order.getOrderbyUser(userID, orderList);
     }
 }

@@ -75,25 +75,52 @@ public class test {
             System.out.println("[12]: Log out");
             System.out.println("Please enter your action: ");
             int action = inputObj.nextInt();
-            while (action >  4 ||  action < 1){
+            while (action >  12 ||  action < 1){
                 System.out.println("Please enter your action: ");
                 action = inputObj.nextInt();
             }
             switch (action) {
                 case 1 -> {
-                    admin.viewProducts(productList);
+                    admin.viewOrders(orderList);
                     goBackAdmin(productList, orderList);
                 }
                 case 2 -> {
-                    admin.addProduct(productList);
+                    admin.viewUserOrders(orderList);
                     goBackAdmin(productList, orderList);
                 }
                 case 3 -> {
-                    admin.removeProduct(productList);
+                    admin.viewProducts(productList);
                     goBackAdmin(productList, orderList);
                 }
                 case 4 -> {
-                    admin.viewOrders(orderList);
+
+                    goBackAdmin(productList, orderList);
+                }
+                case 5 -> {
+                    goBackAdmin(productList, orderList);
+                }
+                case 6 -> {
+                    goBackAdmin(productList, orderList);
+                }
+                case 7 -> {
+                    admin.addProduct(productList);
+                    goBackAdmin(productList, orderList);
+                }
+                case 8 -> {
+                    admin.removeProduct(productList);
+                    goBackAdmin(productList, orderList);
+                }
+                case 9 -> {
+                    goBackAdmin(productList, orderList);
+                }
+                case 10 -> {
+                    goBackAdmin(productList, orderList);
+                }
+                case 11 -> {
+                    goBackAdmin(productList, orderList);
+                }
+                case 12 -> {
+                    goBackAdmin(productList, orderList);
                 }
             }
 

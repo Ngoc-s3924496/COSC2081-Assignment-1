@@ -1,11 +1,9 @@
 package ASM_Prog1.Order;
 
+import ASM_Prog1.Product.Product;
 import ASM_Prog1.Product.ProductList;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class ShoppingCart {
     private final Map<String, CartEntry> Cart;
@@ -41,12 +39,11 @@ public class ShoppingCart {
     }
 
     private int getItemPrice(String itemId){
-        List<List<String>> orderList = ProductList.getProductList();
+        ArrayList<Product> orderList = ProductList.getProductList();
         int productPrice = 0;
-        for (List<String> productInfo : orderList) {
-            if (Objects.equals(productInfo.get(0), itemId)) {
-                 String productPriceString = productInfo.get(5);
-                 productPrice = Integer.parseInt(productPriceString);
+        for (Product productInfo : orderList) {
+            if (Objects.equals(productInfo.getProductID(), itemId)) {
+                 productPrice = productInfo.getPrice();
                  break;
             }
         }
@@ -63,5 +60,4 @@ public class ShoppingCart {
         return totalPrice;
     }
 }
-
 

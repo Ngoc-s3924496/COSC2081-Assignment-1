@@ -1,5 +1,6 @@
 package ASM_Prog1.Order;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Daily {
@@ -8,7 +9,7 @@ public class Daily {
 
     private double revenue;
 
-    private List<String> executedOrder;
+    private ArrayList<Order> executedOrder;
 
     public Daily(String day, String month, String year){
 

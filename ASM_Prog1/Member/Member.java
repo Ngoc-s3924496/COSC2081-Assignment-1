@@ -1,4 +1,4 @@
-package ASM_Prog1.Member;
+/*package ASM_Prog1.Member;
 
 import ASM_Prog1.Customer.Customer;
 import ASM_Prog1.Order.Order;
@@ -142,7 +142,7 @@ public class Member extends Customer {
                 default -> totalPaid;
             };
         }
-        return new Order(orderID, status, userID, userName, products, totalPaid, eventEffect, dateTime);
+        return new Order(orderID, status, userID, userName, product, totalPaid, eventEffect, dateTime);
     }
 
     ArrayList<String[]> listYourOrder(String userID) throws IOException {
@@ -340,3 +340,4 @@ public class Member extends Customer {
                 '}';
     }
 }
+*/

@@ -1,1 +1,4 @@
-O22121,delivering,C206677,something,something,100000000,something,something,something
+ORDERID,STATUS,USERID,USERNAME,PRODUCT,TOTALPAID,EVENTEFFECT,DATETIME
+O22121,delivering,C206677,something,something,100000000,something,something
+O22121,delivering,C206677,something,something,100000000,true,something
+O22121,delivering,C206677,something,something,100000000,false,something

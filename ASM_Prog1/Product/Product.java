@@ -26,29 +26,17 @@ public class Product
         this.price = price;
     }
 
-    public List<String> convertToListString()
+    public String CSVString()
     {
-        List<String> product = new ArrayList<>();
-        product.add(productID);
-        product.add(productName);
-        product.add(category);
-        product.add(unit);
-        product.add(String.valueOf(quantity));
-        product.add(String.valueOf(price));
-        return product;
+        return String.format("%s, %s, %s, %s, %d, %d", getProductID(), getProductName(), getCategory(), getUnit(),
+                getQuantity(), getPrice());
     }
 
     @Override
     public String toString()
     {
-        return "Product{" +
-                "productID='" + productID + '\'' +
-                ", productName='" + productName + '\'' +
-                ", category='" + category + '\'' +
-                ", unit='" + unit + '\'' +
-                ", quantity=" + quantity +
-                ", price=" + price +
-                '}';
+        return "[" + productID + ", " +  productName + ", " + category
+                + ", " + unit + ", " + quantity + ", " + price + ']';
     }
 
     public String getProductID()
