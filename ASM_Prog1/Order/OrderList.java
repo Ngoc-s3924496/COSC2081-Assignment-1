@@ -60,4 +60,32 @@ public class OrderList {
             System.out.println(strings);
         }
     }
+    public void addNewOrder(Order order){
+        this.orderList.add(order);
+    }
+    public void removeOrder(String orderID){
+        for (Order order : this.orderList)
+        {
+            if (Objects.equals(order.getOrderID(), orderID))
+            {
+                orderList.remove(order);
+                System.out.println("Order remove successfully");
+                return;
+            }
+        }
+        System.out.println("No order found.");
+    }
+    public void updateStatus(String orderID, String status)
+    {
+        for (Order order : this.orderList)
+        {
+            if (Objects.equals(order.getOrderID(), orderID))
+            {
+                order.setOrderStatus(status);
+                System.out.println("Status updated successfully");
+                return;
+            }
+        }
+        System.out.println("No order found.");
+    }
 }

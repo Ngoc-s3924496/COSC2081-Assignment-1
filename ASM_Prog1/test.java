@@ -1,23 +1,26 @@
 package ASM_Prog1;
 
 import ASM_Prog1.Admin.Admin;
+import ASM_Prog1.Event.EventList;
 import ASM_Prog1.Order.OrderList;
 import ASM_Prog1.Product.*;
 
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.text.ParseException;
 import java.util.Scanner;
 
 public class test {
 
-    public static void main(String[] args) throws IOException, URISyntaxException {
+    public static void main(String[] args) throws IOException, URISyntaxException, ParseException {
         ProductList productList = new ProductList();
         OrderList orderList = new OrderList();
-        pageStart(productList, orderList);
+        EventList eventList = new EventList();
+        pageStart(productList, orderList, eventList);
     }
 
-    public static void pageStart(ProductList productList, OrderList orderList) throws IOException, URISyntaxException {
+    public static void pageStart(ProductList productList, OrderList orderList, EventList eventList) throws IOException, URISyntaxException, ParseException {
         System.out.println("COSC2081 GROUP ASSIGNMENT");
         System.out.println("STORE ORDER MANAGEMENT SYSTEM");
         System.out.println("Instructor: Mr. Minh Vu");
@@ -39,13 +42,13 @@ public class test {
             input = inputObj.nextInt();
         }
         switch (input) {
-            case 1 -> pageAdmin(productList, orderList, 0);
+            case 1 -> pageAdmin(productList, orderList, eventList, 0);
             case 2 -> System.out.println("Hello");
             case 3 -> pageEnd(productList);
         }
     }
 
-    public static void pageAdmin(ProductList productList, OrderList orderList, int verified) throws IOException, URISyntaxException {
+    public static void pageAdmin(ProductList productList, OrderList orderList, EventList eventList, int verified) throws IOException, URISyntaxException, ParseException {
         Admin admin = new Admin();
         Scanner inputObj = new Scanner(System.in);
         if (verified == 0){
@@ -82,45 +85,48 @@ public class test {
             switch (action) {
                 case 1 -> {
                     admin.viewOrders(orderList);
-                    goBackAdmin(productList, orderList);
+                    goBackAdmin(productList, orderList, eventList);
                 }
                 case 2 -> {
                     admin.viewUserOrders(orderList);
-                    goBackAdmin(productList, orderList);
+                    goBackAdmin(productList, orderList, eventList);
                 }
                 case 3 -> {
                     admin.viewProducts(productList);
-                    goBackAdmin(productList, orderList);
+                    goBackAdmin(productList, orderList, eventList);
                 }
                 case 4 -> {
 
-                    goBackAdmin(productList, orderList);
+                    goBackAdmin(productList, orderList, eventList);
                 }
                 case 5 -> {
-                    goBackAdmin(productList, orderList);
+                    admin.viewEvent(eventList);
+                    goBackAdmin(productList, orderList, eventList);
                 }
                 case 6 -> {
-                    goBackAdmin(productList, orderList);
+                    goBackAdmin(productList, orderList, eventList);
                 }
                 case 7 -> {
                     admin.addProduct(productList);
-                    goBackAdmin(productList, orderList);
+                    goBackAdmin(productList, orderList, eventList);
                 }
                 case 8 -> {
                     admin.removeProduct(productList);
-                    goBackAdmin(productList, orderList);
+                    goBackAdmin(productList, orderList, eventList);
                 }
                 case 9 -> {
-                    goBackAdmin(productList, orderList);
+                    admin.addEvent(eventList);
+                    goBackAdmin(productList, orderList, eventList);
                 }
                 case 10 -> {
-                    goBackAdmin(productList, orderList);
+                    admin.updateProductPrice(productList);
+                    goBackAdmin(productList, orderList, eventList);
                 }
                 case 11 -> {
-                    goBackAdmin(productList, orderList);
+                    goBackAdmin(productList, orderList, eventList);
                 }
                 case 12 -> {
-                    goBackAdmin(productList, orderList);
+                    pageStart(productList, orderList, eventList);
                 }
             }
 
@@ -128,7 +134,7 @@ public class test {
         else{
             System.out.println("Wrong username or password");
             lineBreak();
-            pageStart(productList, orderList);
+            pageStart(productList, orderList, eventList);
         }
     }
 
@@ -145,7 +151,7 @@ public class test {
         }
     }
 
-    public static void goBackAdmin(ProductList productList, OrderList orderList) throws IOException, URISyntaxException {
+    public static void goBackAdmin(ProductList productList, OrderList orderList, EventList eventList) throws IOException, URISyntaxException, ParseException {
         Scanner inputObj = new Scanner(System.in);
         System.out.println("[1] Go back     [2] Log out");
         int choice = inputObj.nextInt();
@@ -156,11 +162,11 @@ public class test {
         }
 
         if (choice == 1) {
-            pageAdmin(productList, orderList, 1);
+            pageAdmin(productList, orderList, eventList, 1);
         }
         else{
             lineBreak();
-            pageStart(productList, orderList);
+            pageStart(productList, orderList, eventList);
         }
     }
 }

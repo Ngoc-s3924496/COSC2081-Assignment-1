@@ -68,30 +68,40 @@ public class ProductList
 
     public void removeProduct(String productID)
     {
-        ArrayList<Product> productList = getProductList();
-        for (Product products : productList)
+        for (Product products : this.productList)
         {
             if (Objects.equals(products.getProductID(), productID))
             {
                 productList.remove(products);
-                break;
+                System.out.println("Product remove successfully");
+                return;
             }
         }
+        System.out.println("No product found.");
+    }
+    public void updatePrice(String productID, int price)
+    {
+        for (Product products : this.productList)
+        {
+            if (Objects.equals(products.getProductID(), productID))
+            {
+                products.setPrice(price);
+                System.out.println("Price updated successfully");
+                return;
+            }
+        }
+        System.out.println("No product found.");
     }
 
     public void saveToCSV() throws IOException
     {
         File fileSrc = new File("src/Data/products.csv");
-        File fileOut = new File("out/production/untitled/Product.csv");
         FileWriter fileWriterSrc = new FileWriter(fileSrc);
-        FileWriter fileWriterOut = new FileWriter(fileOut);
         for (Product product : this.productList)
         {
             fileWriterSrc.write(product.CSVString() + "\n");
-            fileWriterOut.write(product.CSVString() + "\n");
         }
         fileWriterSrc.close();
-        fileWriterOut.close();
     }
 }
 

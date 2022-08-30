@@ -51,14 +51,9 @@ public class Event
     @Override
     public String toString()
     {
-        return "Event{" +
-                "eventID='" + eventID + '\'' +
-                ", eventName='" + eventName + '\'' +
-                ", eventDescription='" + eventDescription + '\'' +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
-                ", eventStatus=" + eventStatus +
-                '}';
+        return "[" +
+                eventID + ", " + eventName + ", " + eventDescription + ", " + startDate + ", " + endDate + ", " +
+                eventStatus + ']';
     }
 
     public String getEventName()
