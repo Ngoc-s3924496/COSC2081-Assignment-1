@@ -97,4 +97,12 @@ public class Admin {
         int price = inputObj.nextInt();
         productList.updatePrice(productID, price);
     }
+    public void updateOrderStatus(OrderList orderList){
+        Scanner inputObj = new Scanner(System.in);
+        System.out.println("Enter the order ID");
+        String orderID = inputObj.nextLine();
+        System.out.println("Enter the update status");
+        String status = inputObj.nextLine();
+        orderList.updateStatus(orderID, status);
+    }
 }

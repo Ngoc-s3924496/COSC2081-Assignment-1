@@ -123,6 +123,7 @@ public class test {
                     goBackAdmin(productList, orderList, eventList);
                 }
                 case 11 -> {
+                    admin.updateOrderStatus(orderList);
                     goBackAdmin(productList, orderList, eventList);
                 }
                 case 12 -> {
