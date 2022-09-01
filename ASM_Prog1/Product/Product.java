@@ -28,7 +28,7 @@ public class Product
 
     public String CSVString()
     {
-        return String.format("%s, %s, %s, %s, %d, %d", getProductID(), getProductName(), getCategory(), getUnit(),
+        return String.format("%s,%s,%s,%s,%d,%d", getProductID(), getProductName(), getCategory(), getUnit(),
                 getQuantity(), getPrice());
     }
 
