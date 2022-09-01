@@ -4,10 +4,7 @@ import ASM_Prog1.Order.Order;
 import ASM_Prog1.Order.OrderList;
 import ASM_Prog1.Product.Product;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,7 +15,7 @@ public class EventList {
     private static ArrayList<Event> eventList = new ArrayList<>();
     private static final String delimiter = ",";
     private ArrayList<Event> setEventList() throws IOException, ParseException {
-        String filePath = "src/Data/event.csv";
+        String filePath = "src/Data/events.csv";
         return EventList.readFile(filePath);
     }
     public EventList() throws IOException, ParseException {
@@ -43,8 +40,8 @@ public class EventList {
             event.setEventID(arr.get(0));
             event.setEventName(arr.get(1));
             event.setPercentageDiscount(Integer.parseInt(arr.get(2)));
-            event.setStartDate(event.stringToDate(arr.get(3)));
-            event.setEndDate(event.stringToDate(arr.get(4)));
+            event.setStartDate(arr.get(3));
+            event.setEndDate(arr.get(4));
             event.setEventDescription(arr.get(5));
             event.setEventStatus(arr.get(6));
             finalArr.add(event);
@@ -74,5 +71,17 @@ public class EventList {
             return;
         }
     }
-        System.out.println("No event found.");}
+        System.out.println("No event found.");
+    }
+    public void saveToCSV() throws IOException
+    {
+        File fileSrc = new File("src/Data/events.csv");
+        FileWriter fileWriterSrc = new FileWriter(fileSrc);
+        fileWriterSrc.write("EVENTID, EVENTNAME, PERCENTAGEDISCOUNT, STARTDATE, ENDDATE, DESCRIPTION, STATUS" + "\n");
+        for (Event event : this.eventList)
+        {
+            fileWriterSrc.write(event.CSVString() + "\n");
+        }
+        fileWriterSrc.close();
+    }
 }

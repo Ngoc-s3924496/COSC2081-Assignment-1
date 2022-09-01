@@ -5,18 +5,15 @@ import java.util.List;
 
 public class Daily {
 
-    private String date;
-
-    private double revenue;
+    private int revenue;
 
     private ArrayList<Order> executedOrder;
 
-    public Daily(String day, String month, String year){
+    public Daily(String date, OrderList orderList){
 
-        this.date = day + "/" + month + "/" + year;
+        this.executedOrder = Order.getOrderByDate(date, orderList);
 
-        this.executedOrder = Order.getOrderByDate(day, month, year);
-
-        this.revenue = Order.getRevenueByDate(day, month, year);
+        this.revenue = Order.getRevenueByDate(date, orderList);
     }
-}
+    public int getDailyRevenue(){return revenue;}
+    }

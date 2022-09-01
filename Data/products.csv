@@ -1,10 +1,4 @@
-P246581,Alaxan,Medicine,box,30,125800
-P156736,Panadol,Medicine,box,100,234000
-P132546,Berocca,Medicine,box,30,196800
-P597648,Biafine,Medicine,tube,30,95000
-P234684,Calcium Corbiere,Medicine,box,50,160800
-P648966,Salonsip,Medicine,box,50,190000
-P243548,Salonpas,Medicine,box,100,220000
+PRODUCT_ID,PRODUCT_NAME,CATEGORY,UNIT,QUANTITY,PRICE_PER_UNIT(VND)
 P645654,Tiger Balm Plaster-RD,Medicine,bottle,20,68000
 P972321,Cao Sao Vang,Medicine,box,20,25000
 P321564,Clorpheniramin,Medicine,box,20,20000

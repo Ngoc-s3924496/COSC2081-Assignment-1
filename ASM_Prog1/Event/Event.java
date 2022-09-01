@@ -13,23 +13,22 @@ public class Event
     private String eventName;
     private int percentageDiscount;
     private String eventDescription;
-    private Date startDate;
-    private Date endDate;
+    private String startDate;
+    private String endDate;
     private boolean eventStatus;
 
     public Event()
     {
     }
 
-    public Event(String eventName, int percentageDiscount, Date startDate, Date endDate, String eventDescription)
-    {
+    public Event(String eventName, int percentageDiscount, String startDate, String endDate, String eventDescription) throws ParseException {
         this.eventID = "E" + ((int) (Math.random() * 999999) + 1);
         this.eventName = eventName;
         this.percentageDiscount = percentageDiscount;
         this.startDate = startDate;
         this.endDate = endDate;
         this.eventDescription = eventDescription;
-        this.eventStatus = this.dayCheck(new Date(), this.endDate);
+        this.eventStatus = this.dayCheck(new Date(), stringToDate(this.endDate));
     }
 
     public boolean dayCheck(Date today, Date endDate)
@@ -43,9 +42,10 @@ public class Event
         return simpleDateFormat.parse(date);
     }
 
-    public String dateToString(Date date) throws ParseException {
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        return dateFormat.format(date);
+    public String CSVString()
+    {
+        return String.format("%s,%s,%d,%s,%s,%s,%b", getEventID(), getEventName(), getPercentageDiscount(), getStartDate(),
+                getEndDate(), getEventDescription(), getEventStatus());
     }
 
     @Override
@@ -106,22 +106,22 @@ public class Event
         this.eventDescription = eventDescription;
     }
 
-    public Date getStartDate()
+    public String getStartDate()
     {
         return startDate;
     }
 
-    public void setStartDate(Date startDate)
+    public void setStartDate(String startDate)
     {
         this.startDate = startDate;
     }
 
-    public Date getEndDate()
+    public String getEndDate()
     {
         return endDate;
     }
 
-    public void setEndDate(Date endDate)
+    public void setEndDate(String endDate)
     {
         this.endDate = endDate;
     }
@@ -131,8 +131,7 @@ public class Event
         return eventStatus;
     }
 
-    public void setEventStatus(String eventStatus)
-    {
-        this.eventStatus = this.dayCheck(new Date(), this.endDate);
+    public void setEventStatus(String eventStatus) throws ParseException {
+        this.eventStatus = this.dayCheck(new Date(), stringToDate(this.endDate));
     }
 }

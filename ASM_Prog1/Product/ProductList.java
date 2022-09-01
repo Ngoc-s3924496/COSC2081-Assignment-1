@@ -97,6 +97,7 @@ public class ProductList
     {
         File fileSrc = new File("src/Data/products.csv");
         FileWriter fileWriterSrc = new FileWriter(fileSrc);
+        fileWriterSrc.write("PRODUCT_ID,PRODUCT_NAME,CATEGORY,UNIT,QUANTITY,PRICE_PER_UNIT(VND)" + "\n");
         for (Product product : this.productList)
         {
             fileWriterSrc.write(product.CSVString() + "\n");

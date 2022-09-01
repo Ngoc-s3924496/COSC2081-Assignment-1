@@ -54,7 +54,7 @@ public class OrderList {
 
     public void displayOrderList()
     {
-        System.out.println("[ORDERID, STATUS, USERID, USERNAME, PRODUCT, TOTALPAID, EVENTEFFECT, DATETIME]");
+        System.out.println("[ORDERID,STATUS,USERID,USERNAME,PRODUCT,TOTALPAID,EVENTEFFECT,DATETIME]");
         for (Order strings : this.orderList)
         {
             System.out.println(strings);
@@ -87,5 +87,16 @@ public class OrderList {
             }
         }
         System.out.println("No order found.");
+    }
+    public void saveToCSV() throws IOException
+    {
+        File fileSrc = new File("src/Data/orders.csv");
+        FileWriter fileWriterSrc = new FileWriter(fileSrc);
+        fileWriterSrc.write("ORDERID,STATUS,USERID,USERNAME,PRODUCT,TOTALPAID,EVENTEFFECT,DATETIME" + "\n");
+        for (Order order : this.orderList)
+        {
+            fileWriterSrc.write(order.CSVString() + "\n");
+        }
+        fileWriterSrc.close();
     }
 }

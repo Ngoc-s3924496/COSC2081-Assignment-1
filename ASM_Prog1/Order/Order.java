@@ -22,11 +22,9 @@ public class Order {
         this.dateTime = dateTime;
     }
 
-    public static ArrayList<Order> getOrderByDate(String day, String month, String year){
-        String date = day + "/" + month + "/" + year;
+    public static ArrayList<Order> getOrderByDate(String date, OrderList orderList){
         ArrayList<Order> dailyOrder = new ArrayList<>();
-        ArrayList<Order> orderList = OrderList.getOrderList();
-        for (Order strings : orderList) {
+        for (Order strings : orderList.getOrderList()) {
             String orderDate = strings.getOrderDateTime();
             if (date.equalsIgnoreCase(orderDate)) {
                 dailyOrder.add(strings);
@@ -52,11 +50,9 @@ public class Order {
         }
     }
 
-    public static int getRevenueByDate(String day, String month, String year){
-        String date = day + "/" + month + "/" + year;
+    public static int getRevenueByDate(String date, OrderList orderList){
         int dailyRevenue = 0;
-        ArrayList<Order> orderList = OrderList.getOrderList();
-        for (Order strings : orderList) {
+        for (Order strings : orderList.getOrderList()) {
             String orderDate = strings.getOrderDateTime();
             if (date.equalsIgnoreCase(orderDate)) {
                 int orderTotal = strings.getOrderTotalPaid();
@@ -68,7 +64,7 @@ public class Order {
 
     public String CSVString()
     {
-        return String.format("%s, %s, %s, %s, %d, %d", getOrderID(), getOrderStatus(), getOrderUserID(), getOrderUserName(),
+        return String.format("%s,%s,%s,%s,%s,%d,%b,%s", getOrderID(), getOrderStatus(), getOrderUserID(), getOrderUserName(),
                 getOrderProduct(), getOrderTotalPaid(), getOrderEventEffect(), getOrderDateTime());
     }
     @Override
