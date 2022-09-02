@@ -11,8 +11,8 @@ import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 public class Admin {
-    private String username;
-    private String password;
+    private final String username;
+    private final String password;
 
     public Admin(){
         this.username = "Team925";
@@ -36,7 +36,7 @@ public class Admin {
         Scanner inputObj = new Scanner(System.in);
         System.out.println("Enter the product name");
         String productName = inputObj.nextLine();
-        while (product.checkName(productName, productList)) {
+        while (product.checkName(productName)) {
             System.out.println("Name already exist");
             System.out.println("Enter a different name");
             productName = inputObj.nextLine();
@@ -49,7 +49,7 @@ public class Admin {
         int quantity = inputObj.nextInt();
         System.out.println("Enter the product price");
         int price = inputObj.nextInt();
-        Product newProduct = new Product(productName, category, unit, quantity, price, productList);
+        Product newProduct = new Product(productName, category, unit, quantity, price);
         productList.addNewProduct(newProduct);
     }
 
@@ -63,12 +63,11 @@ public class Admin {
     public void viewOrders(OrderList orderList){
         orderList.displayOrderList();
     }
-    public void viewUserOrders(OrderList orderList){
-        Order order = new Order("0", "0");
+    public void viewUserOrders(){
         Scanner inputObj = new Scanner(System.in);
         System.out.println("Enter User ID: ");
         String userID = inputObj.nextLine();
-        order.getOrderByUser(userID, orderList);
+        Order.getOrderByUser(userID);
     }
     public void viewEvent(EventList eventList){
         eventList.displayEventList();
@@ -86,28 +85,34 @@ public class Admin {
         }
         System.out.println("Enter the event start date");
         String startDate = inputObj.nextLine();
-        while (dateValidate(startDate) == false){
+        while (dateValidate(startDate)){
             System.out.println("Enter a valid start date");
             startDate = inputObj.nextLine();
         }
         startDate = dateInput(startDate);
         System.out.println("Enter the event end date");
         String endDate = inputObj.nextLine();
-        while (dateValidate(endDate) == false){
+        while (dateValidate(endDate)){
             System.out.println("Enter a valid end date");
             endDate = inputObj.nextLine();
         }
         endDate = dateInput(endDate);
         System.out.println("Enter the event description");
         String description = inputObj.nextLine();
-        Event newEvent = new Event(eventName, discount, startDate, endDate, description, eventList);
+        Event newEvent = new Event(eventName, discount, startDate, endDate, description);
         eventList.addNewEvent(newEvent);
     }
     public void removeEvent(EventList eventList){
         Scanner inputObj = new Scanner(System.in);
-        System.out.println("Enter the event name");
-        String eventName = inputObj.nextLine();
-        eventList.removeEvent(eventName);
+        System.out.println("Enter the event ID");
+        String eventID = inputObj.nextLine();
+        eventList.removeEvent(eventID);
+    }
+    public void removeOrder(OrderList orderList){
+        Scanner inputObj = new Scanner(System.in);
+        System.out.println("Enter the order ID");
+        String orderID = inputObj.nextLine();
+        orderList.removeOrder(orderID);
     }
     public void updateProductPrice(ProductList productList){
         Scanner inputObj = new Scanner(System.in);
@@ -125,11 +130,11 @@ public class Admin {
         String status = inputObj.nextLine();
         orderList.updateStatus(orderID, status);
     }
-    public void getDailyRevenue(OrderList orderList) throws ParseException {
+    public void getDailyRevenue(OrderList orderList) {
         Scanner inputObj = new Scanner(System.in);
         System.out.println("Enter the date to get the daily revenue");
         String date = inputObj.nextLine();
-        while (dateValidate(date) == false){
+        while (dateValidate(date)){
             System.out.println("Enter a valid date to get the daily revenue");
             date = inputObj.nextLine();
         }
@@ -137,7 +142,7 @@ public class Admin {
         Daily daily = new Daily(date, orderList);
         System.out.println(daily.getDailyRevenue());
     }
-    public boolean dateValidate(String date) throws ParseException {
+    public boolean dateValidate(String date) {
         String[] dateComponent = date.split("/");
         String day = dateComponent[0].replaceFirst("^0*", "");
         String month = dateComponent[1].replaceFirst("^0*", "");
@@ -159,9 +164,9 @@ public class Admin {
         try{
             format.parse(date);
         } catch (ParseException e){
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
     public String dateInput(String date){
         String[] dateComponent = date.split("/");

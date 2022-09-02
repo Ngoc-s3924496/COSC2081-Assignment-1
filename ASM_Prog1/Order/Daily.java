@@ -1,19 +1,16 @@
 package ASM_Prog1.Order;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Daily {
 
-    private int revenue;
-
-    private ArrayList<Order> executedOrder;
+    private final int revenue;
 
     public Daily(String date, OrderList orderList){
 
-        this.executedOrder = Order.getOrderByDate(date, orderList);
+        ArrayList<Order> executedOrder = Order.getOrderByDate(date);
 
-        this.revenue = Order.getRevenueByDate(date, orderList);
+        this.revenue = Order.getRevenueByDate(date);
     }
     public int getDailyRevenue(){return revenue;}
     }

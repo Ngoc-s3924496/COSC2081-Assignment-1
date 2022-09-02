@@ -1,14 +1,6 @@
 package ASM_Prog1.Member;
 
-import ASM_Prog1.Product.*;
-import ASM_Prog1.Order.*;
-import ASM_Prog1.Event.*;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.text.ParseException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -16,12 +8,12 @@ import java.util.Objects;
 public class MemberList {
     private static final String delimiter = ",";
     private static ArrayList<Member> memberList = new ArrayList<>();
-    private ArrayList<Member> setMemberList() throws IOException, ParseException {
+    private ArrayList<Member> setMemberList() throws IOException {
         String filePath = "src/Data/members.csv";
         return MemberList.readFile(filePath);
     }
-    public MemberList() throws IOException, ParseException {
-        this.memberList = setMemberList();
+    public MemberList() throws IOException {
+        memberList = setMemberList();
     }
     public static ArrayList<Member> getMemberList() {
         return memberList;
@@ -52,18 +44,18 @@ public class MemberList {
     public void displayMemberList()
     {
         System.out.println("[USER_ID,USERNAME,PASSWORD,FULL_NAME,PHONE_NUMBER,MEMBERSHIP_RANK,TOTAL_PAID]");
-        for (Member strings : this.memberList)
+        for (Member strings : memberList)
         {
             System.out.println(strings);
         }
     }
     public void addNewMember(Member member){
-        this.memberList.add(member);
+        memberList.add(member);
         System.out.println("Account " + member.getUserName() + " created successfully");
     }
     public void updateMember(Member member)
     {
-        for (Member members : this.memberList)
+        for (Member members : memberList)
         {
             if (Objects.equals(member.getUserID(), members.getUserID()))
             {
@@ -72,5 +64,16 @@ public class MemberList {
                 return;
             }
         }
+    }
+    public void saveToCSV() throws IOException
+    {
+        File fileSrc = new File("src/Data/members.csv");
+        FileWriter fileWriterSrc = new FileWriter(fileSrc);
+        fileWriterSrc.write("USER_ID,USERNAME,PASSWORD,FULL_NAME,PHONE_NUMBER,MEMBERSHIP_RANK,TOTAL_PAID" + "\n");
+        for (Member member : memberList)
+        {
+            fileWriterSrc.write(member.CSVString() + "\n");
+        }
+        fileWriterSrc.close();
     }
 }

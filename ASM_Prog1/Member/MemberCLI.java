@@ -9,6 +9,7 @@ import ASM_Prog1.Product.ProductList;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class MemberCLI {
@@ -26,23 +27,22 @@ public class MemberCLI {
     public void viewEvent(EventList eventList){
         eventList.displayEventList();
     }
-    public void viewOrders(Member member, OrderList orderList){
-        Order order = new Order("0", "0");
+    public void viewOrders(Member member){
         String userID = member.getUserID();
-        order.getOrderByUser(userID, orderList);
+        Order.getOrderByUser(userID);
     }
-    public void makeOrder(Member member, ProductList productList, OrderList orderList, EventList eventList,
+    public void makeOrder(Member member, ProductList productList, OrderList orderList,
                           MemberList memberList){
         Scanner inputObj = new Scanner(System.in);
         System.out.println("Enter the product ID you want to buy");
         String productID = inputObj.nextLine();
         Product product = new Product("0", "0");
-        product = product.getProductByID(productID, productList);
+        product = product.getProductByID(productID);
         while (product.getProductID().equalsIgnoreCase("0")){
             System.out.println("No product found");
             System.out.println("Enter the product ID you want to buy");
             productID = inputObj.nextLine();
-            product = product.getProductByID(productID, productList);
+            product = product.getProductByID(productID);
         }
         System.out.println("Enter the amount you want to buy");
         int quantity = Integer.parseInt(inputObj.nextLine());
@@ -54,26 +54,26 @@ public class MemberCLI {
         productList.updateQuantity(productID, product.getQuantity() - quantity);
         int eventDiscount = 0;
         boolean eventEffect = false;
-        for (Event event: eventList.getEventList()){
-            if (event.getEventStatus() == true){
+        for (Event event: EventList.getEventList()){
+            if (event.getEventStatus()){
                 eventDiscount = event.getPercentageDiscount();
                 eventEffect = true;
                 break;
             }
         }
-        int totalPaid = product.getPrice() * quantity * (eventDiscount / 100);
-        if (member.getMembershipRanking() == "Silver"){
+        int totalPaid = product.getPrice() * quantity * (100 - eventDiscount) / 100;
+        if (Objects.equals(member.getMembershipRanking(), "Silver")){
             totalPaid = totalPaid * 95 / 100;
         }
-        if (member.getMembershipRanking() == "Gold"){
+        if (Objects.equals(member.getMembershipRanking(), "Gold")){
             totalPaid = totalPaid * 90 / 100;
         }
-        if (member.getMembershipRanking() == "Platinum"){
+        if (Objects.equals(member.getMembershipRanking(), "Platinum")){
             totalPaid = totalPaid * 85 / 100;
         }
-        String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+        String date = new SimpleDateFormat("d/M/yyyy").format(new Date());
         Order newOrder = new Order("delivering", member.getUserID(), member.getUserName(), product.getProductName(),
-                quantity, totalPaid, eventEffect, date, orderList);
+                quantity, totalPaid, eventEffect, date);
         orderList.addNewOrder(newOrder);
         member.setTotalPaid(member.getTotalPaid() + totalPaid);
         member.updateRank();

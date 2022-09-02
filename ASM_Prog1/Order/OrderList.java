@@ -16,7 +16,7 @@ public class OrderList {
 
     public OrderList() throws IOException
     {
-        this.orderList = setOrderList();
+        orderList = setOrderList();
     }
 
     public static ArrayList<Order> getOrderList() {
@@ -38,9 +38,10 @@ public class OrderList {
             order.setOrderStatus(arr.get(1));
             order.setOrderUserName(arr.get(3));
             order.setOrderProduct(arr.get(4));
-            order.setOrderTotalPaid(Integer.parseInt(arr.get(5)));
-            order.setOrderEventEffect(Boolean.parseBoolean(arr.get(6)));
-            order.setOrderDateTime(arr.get(7));
+            order.setProductQuantity(Integer.parseInt(arr.get(5)));
+            order.setOrderTotalPaid(Integer.parseInt(arr.get(6)));
+            order.setOrderEventEffect(Boolean.parseBoolean(arr.get(7)));
+            order.setOrderDateTime(arr.get(8));
             finalArr.add(order);
         }
         bufferedReader.close();
@@ -50,17 +51,17 @@ public class OrderList {
     public void displayOrderList()
     {
         System.out.println("[ORDER_ID,STATUS,USER_ID,USERNAME,PRODUCT,QUANTITY,TOTAL_PAID,EVENT_EFFECT,DATETIME]");
-        for (Order strings : this.orderList)
+        for (Order strings : orderList)
         {
             System.out.println(strings);
         }
     }
     public void addNewOrder(Order order){
-        this.orderList.add(order);
+        orderList.add(order);
         System.out.println("Order added successfully");
     }
     public void removeOrder(String orderID){
-        for (Order order : this.orderList)
+        for (Order order : orderList)
         {
             if (Objects.equals(order.getOrderID(), orderID))
             {
@@ -73,7 +74,7 @@ public class OrderList {
     }
     public void updateStatus(String orderID, String status)
     {
-        for (Order order : this.orderList)
+        for (Order order : orderList)
         {
             if (Objects.equals(order.getOrderID(), orderID))
             {
@@ -89,7 +90,7 @@ public class OrderList {
         File fileSrc = new File("src/Data/orders.csv");
         FileWriter fileWriterSrc = new FileWriter(fileSrc);
         fileWriterSrc.write("ORDER_ID,STATUS,USER_ID,USERNAME,PRODUCT,QUANTITY,TOTAL_PAID,EVENT_EFFECT,DATETIME" + "\n");
-        for (Order order : this.orderList)
+        for (Order order : orderList)
         {
             fileWriterSrc.write(order.CSVString() + "\n");
         }

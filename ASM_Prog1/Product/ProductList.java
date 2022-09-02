@@ -18,7 +18,7 @@ public class ProductList
 
     public ProductList() throws IOException
     {
-        this.productList = setProductList();
+        productList = setProductList();
     }
 
     public static ArrayList<Product> getProductList()
@@ -53,7 +53,7 @@ public class ProductList
     public void displayProductList()
     {
         System.out.println("[PRODUCT_ID,PRODUCT_NAME,CATEGORY,UNIT,QUANTITY,PRICE_PER_UNIT(VND)]");
-        for (Product strings : this.productList)
+        for (Product strings : productList)
         {
             System.out.println(strings);
         }
@@ -61,13 +61,13 @@ public class ProductList
 
     public void addNewProduct(Product productInput)
     {
-        this.productList.add(productInput);
+        productList.add(productInput);
         System.out.println("Product add successfully");
     }
 
     public void removeProduct(String productID)
     {
-        for (Product products : this.productList)
+        for (Product products : productList)
         {
             if (Objects.equals(products.getProductID(), productID))
             {
@@ -80,7 +80,7 @@ public class ProductList
     }
     public void updatePrice(String productID, int price)
     {
-        for (Product products : this.productList)
+        for (Product products : productList)
         {
             if (Objects.equals(products.getProductID(), productID))
             {
@@ -93,7 +93,7 @@ public class ProductList
     }
     public void updateQuantity(String productID, int quantity)
     {
-        for (Product products : this.productList)
+        for (Product products : productList)
         {
             if (Objects.equals(products.getProductID(), productID))
             {
@@ -107,7 +107,7 @@ public class ProductList
         File fileSrc = new File("src/Data/products.csv");
         FileWriter fileWriterSrc = new FileWriter(fileSrc);
         fileWriterSrc.write("PRODUCT_ID,PRODUCT_NAME,CATEGORY,UNIT,QUANTITY,PRICE_PER_UNIT(VND)" + "\n");
-        for (Product product : this.productList)
+        for (Product product : productList)
         {
             fileWriterSrc.write(product.CSVString() + "\n");
         }

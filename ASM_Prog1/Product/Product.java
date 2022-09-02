@@ -17,10 +17,10 @@ public class Product
         this.productName = productName;
     }
 
-    public Product(String productName, String category, String unit, int quantity, int price, ProductList productList)
+    public Product(String productName, String category, String unit, int quantity, int price)
     {
         String ID = "P" + ((int) (Math.random() * 999999) + 1);
-        while (checkID(ID, productList)){
+        while (checkID(ID)){
             ID ="P" + ((int) (Math.random() * 999999) + 1);
         }
         this.productID = ID;
@@ -30,9 +30,9 @@ public class Product
         this.quantity = quantity;
         this.price = price;
     }
-    public static void searchProduct(String productName, ProductList productList){
+    public static void searchProduct(String productName){
         ArrayList<Product> productSearch = new ArrayList<>();
-        for (Product product: productList.getProductList()){
+        for (Product product: ProductList.getProductList()){
             if(product.getProductName().toLowerCase().contains(productName.toLowerCase())){
                 productSearch.add(product);
             }
@@ -47,9 +47,9 @@ public class Product
             }
         }
     }
-    public Product getProductByID(String productID, ProductList productList){
+    public Product getProductByID(String productID){
         Product searchProduct = new Product("0", "0");
-        for (Product product : productList.getProductList()){
+        for (Product product : ProductList.getProductList()){
             if (productID.equalsIgnoreCase(product.getProductID())){
                 searchProduct = product;
                 return searchProduct;
@@ -57,8 +57,8 @@ public class Product
         }
         return searchProduct;
     }
-    public static void ascPrice(ProductList productList){
-        ArrayList<Product> productDes = productList.getProductList();
+    public static void ascPrice(){
+        ArrayList<Product> productDes = new ArrayList<>(ProductList.getProductList());
         for (int i = 0; i < productDes.size(); ++i){
             for(int j = 0; j < productDes.size() - i - 1; ++j){
                 if(productDes.get(j+1).getPrice() < productDes.get(j).getPrice()){
@@ -73,8 +73,8 @@ public class Product
             System.out.println(strings);
         }
     }
-    public static void descPrice(ProductList productList){
-        ArrayList<Product> productDes = productList.getProductList();
+    public static void descPrice(){
+        ArrayList<Product> productDes = new ArrayList<>(ProductList.getProductList());
         for (int i = 0; i < productDes.size(); ++i){
             for(int j = 0; j < productDes.size() - i - 1; ++j){
                 if(productDes.get(j+1).getPrice() > productDes.get(j).getPrice()){
@@ -89,16 +89,16 @@ public class Product
             System.out.println(strings);
         }
     }
-    public boolean checkID(String ID, ProductList productList){
-        for (Product product : productList.getProductList()){
+    public boolean checkID(String ID){
+        for (Product product : ProductList.getProductList()){
             if (ID.equals(product.getProductID())){
                 return true;
             }
         }
         return false;
     }
-    public boolean checkName(String Name, ProductList productList){
-        for (Product product : productList.getProductList()){
+    public boolean checkName(String Name){
+        for (Product product : ProductList.getProductList()){
             if (Name.equals(product.getProductName())){
                 return true;
             }

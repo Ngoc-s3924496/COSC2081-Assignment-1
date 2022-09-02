@@ -1,10 +1,6 @@
 package ASM_Prog1.Member;
 
 import ASM_Prog1.Customer.Customer;
-import ASM_Prog1.Event.Event;
-import ASM_Prog1.Event.EventList;
-
-import java.io.IOException;
 
 public class Member extends Customer {
     private final String userID;
@@ -16,9 +12,9 @@ public class Member extends Customer {
         this.userID = userID;
     }
     public Member(String userName, String password, String fullName, String phoneNumber, String membershipRanking,
-                  int totalPaid, MemberList memberList) throws IOException {
+                  int totalPaid) {
         String ID = "U" + ((int) (Math.random() * 999999) + 1);
-        while (IDCheck(ID, memberList)){
+        while (IDCheck(ID)){
             ID = "U" + ((int) (Math.random() * 999999) + 1);
         }
         this.userID = ID;
@@ -29,16 +25,16 @@ public class Member extends Customer {
         this.membershipRanking = membershipRanking;
         this.totalPaid = totalPaid;
     }
-    public boolean IDCheck(String ID, MemberList memberList) {
-        for (Member member : memberList.getMemberList()) {
+    public boolean IDCheck(String ID) {
+        for (Member member : MemberList.getMemberList()) {
             if (ID.equals(member.getUserID())) {
                 return true;
             }
         }
         return false;
     }
-    public boolean usernameCheck(String userName, MemberList memberList) {
-        for (Member member : memberList.getMemberList()) {
+    public boolean usernameCheck(String userName) {
+        for (Member member : MemberList.getMemberList()) {
             if (userName.equals(member.getUserName())) {
                 return true;
             }
@@ -73,9 +69,9 @@ public class Member extends Customer {
         }
         return checked;
     }
-    public Member logIn(String username, String password, MemberList memberList){
+    public Member logIn(String username, String password){
         Member logInMember = new Member("0");
-        for (Member member : memberList.getMemberList()){
+        for (Member member : MemberList.getMemberList()){
             if(username.equalsIgnoreCase(member.getUserName()) && password.equalsIgnoreCase(member.getPassword())){
                 logInMember = member;
                 return logInMember;
@@ -94,6 +90,11 @@ public class Member extends Customer {
         } else {
             membershipRanking = "None";
         }
+    }
+    public String CSVString()
+    {
+        return String.format("%s,%s,%s,%s,%s,%s,%d", getUserID(), getUserName(), getPassword(), getFullName(),
+                getPhoneNumber(), getMembershipRanking(), getTotalPaid());
     }
     @Override
     public String toString() {

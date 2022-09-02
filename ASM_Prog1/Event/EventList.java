@@ -14,7 +14,7 @@ public class EventList {
         return EventList.readFile(filePath);
     }
     public EventList() throws IOException, ParseException {
-        this.eventList = setEventList();
+        eventList = setEventList();
     }
 
     public static ArrayList<Event> getEventList() {
@@ -37,7 +37,7 @@ public class EventList {
             event.setStartDate(arr.get(3));
             event.setEndDate(arr.get(4));
             event.setEventDescription(arr.get(5));
-            event.setEventStatus(arr.get(6));
+            event.setEventStatus();
             finalArr.add(event);
         }
         bufferedReader.close();
@@ -46,20 +46,20 @@ public class EventList {
     public void displayEventList()
     {
         System.out.println("[EVENT_ID,EVENT_NAME,PERCENTAGE_DISCOUNT,START_DATE,END_DATE,DESCRIPTION,STATUS]");
-        for (Event strings : this.eventList)
+        for (Event strings : eventList)
         {
             System.out.println(strings);
         }
     }
     public void addNewEvent(Event eventInput)
     {
-        this.eventList.add(eventInput);
+        eventList.add(eventInput);
         System.out.println("Event add successfully");
     }
-    public void removeEvent(String eventName) {
-        for (Event event : this.eventList)
+    public void removeEvent(String eventID) {
+        for (Event event : eventList)
         {
-        if (Objects.equals(event.getEventName(), eventName))
+        if (Objects.equals(event.getEventID(), eventID))
         {
             eventList.remove(event);
             System.out.println("Event remove successfully");
@@ -73,7 +73,7 @@ public class EventList {
         File fileSrc = new File("src/Data/events.csv");
         FileWriter fileWriterSrc = new FileWriter(fileSrc);
         fileWriterSrc.write("EVENT_ID,EVENT_NAME,PERCENTAGE_DISCOUNT,START_DATE,END_DATE,DESCRIPTION,STATUS" + "\n");
-        for (Event event : this.eventList)
+        for (Event event : eventList)
         {
             fileWriterSrc.write(event.CSVString() + "\n");
         }

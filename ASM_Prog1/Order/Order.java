@@ -1,8 +1,5 @@
 package ASM_Prog1.Order;
 
-import ASM_Prog1.Product.Product;
-import ASM_Prog1.Product.ProductList;
-
 import java.util.ArrayList;
 
 public class Order {
@@ -16,9 +13,9 @@ public class Order {
         this.userID = userID;
     }
     public Order(String status, String userID, String userName, String product, int quantity,
-                 int totalPaid, boolean eventEffect, String dateTime, OrderList orderList) {
+                 int totalPaid, boolean eventEffect, String dateTime) {
         String orderID = "O" + ((int) (Math.random() * 999999) + 1);
-        while (checkID(orderID, orderList)){
+        while (checkID(orderID)){
             orderID = "O" + ((int) (Math.random() * 999999) + 1);
         }
         this.orderID = orderID;
@@ -31,8 +28,8 @@ public class Order {
         this.eventEffect = eventEffect;
         this.dateTime = dateTime;
     }
-    public boolean checkID(String ID, OrderList orderList) {
-        for (Order order : orderList.getOrderList()) {
+    public boolean checkID(String ID) {
+        for (Order order : OrderList.getOrderList()) {
             if (ID.equals(order.getOrderID())) {
                 return true;
             }
@@ -40,9 +37,9 @@ public class Order {
         return false;
     }
 
-    public static ArrayList<Order> getOrderByDate(String date, OrderList orderList){
+    public static ArrayList<Order> getOrderByDate(String date){
         ArrayList<Order> dailyOrder = new ArrayList<>();
-        for (Order strings : orderList.getOrderList()) {
+        for (Order strings : OrderList.getOrderList()) {
             String orderDate = strings.getOrderDateTime();
             if (date.equalsIgnoreCase(orderDate)) {
                 dailyOrder.add(strings);
@@ -51,9 +48,9 @@ public class Order {
         return dailyOrder;
     }
 
-    public static void getOrderByUser(String userID, OrderList orderList){
+    public static void getOrderByUser(String userID){
         ArrayList<Order> userOrder = new ArrayList<>();
-        for (Order order: orderList.getOrderList()){
+        for (Order order: OrderList.getOrderList()){
             if(userID.equalsIgnoreCase(order.getOrderUserID())){
                 userOrder.add(order);
             }
@@ -69,9 +66,9 @@ public class Order {
         }
     }
 
-    public static int getRevenueByDate(String date, OrderList orderList){
+    public static int getRevenueByDate(String date){
         int dailyRevenue = 0;
-        for (Order strings : orderList.getOrderList()) {
+        for (Order strings : OrderList.getOrderList()) {
             String orderDate = strings.getOrderDateTime();
             if (date.equalsIgnoreCase(orderDate)) {
                 int orderTotal = strings.getOrderTotalPaid();
