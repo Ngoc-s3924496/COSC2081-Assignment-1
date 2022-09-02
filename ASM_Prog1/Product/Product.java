@@ -1,31 +1,100 @@
 package ASM_Prog1.Product;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Product
 {
-    private String productID;
-    private String productName;
+    private final String productID;
+    private final String productName;
     private String category;
     private String unit;
     private int quantity;
     private int price;
 
-    public Product()
+    public Product(String productID, String productName)
     {
+        this.productID = productID;
+        this.productName = productName;
     }
 
-    public Product(String productName, String category, String unit, int quantity, int price)
+    public Product(String productName, String category, String unit, int quantity, int price, ProductList productList)
     {
-        this.productID = "P" + ((int) (Math.random() * 999999) + 1);
+        String ID = "P" + ((int) (Math.random() * 999999) + 1);
+        while (checkID(ID, productList)){
+            ID ="P" + ((int) (Math.random() * 999999) + 1);
+        }
+        this.productID = ID;
         this.productName = productName;
         this.category = category;
         this.unit = unit;
         this.quantity = quantity;
         this.price = price;
     }
-
+    public static void searchProduct(String productName, ProductList productList){
+        ArrayList<Product> productSearch = new ArrayList<>();
+        for (Product product: productList.getProductList()){
+            if(product.getProductName().toLowerCase().contains(productName.toLowerCase())){
+                productSearch.add(product);
+            }
+        }
+        if (productSearch.size() == 0){
+            System.out.println("No product found");
+        }
+        else{
+            System.out.println("[PRODUCT_ID,PRODUCT_NAME,CATEGORY,UNIT,QUANTITY,PRICE_PER_UNIT(VND)]");
+            for(Product product : productSearch){
+                System.out.println(product);
+            }
+        }
+    }
+    public static void ascPrice(ProductList productList){
+        ArrayList<Product> productDes = productList.getProductList();
+        for (int i = 0; i < productDes.size(); ++i){
+            for(int j = 0; j < productDes.size() - i - 1; ++j){
+                if(productDes.get(j+1).getPrice() < productDes.get(j).getPrice()){
+                    Product temp = productDes.get(j);
+                    productDes.set(j, productDes.get(j+1));
+                    productDes.set(j+1, temp);
+                }
+            }
+        }
+        for (Product strings : productDes)
+        {
+            System.out.println(strings);
+        }
+    }
+    public static void descPrice(ProductList productList){
+        ArrayList<Product> productDes = productList.getProductList();
+        for (int i = 0; i < productDes.size(); ++i){
+            for(int j = 0; j < productDes.size() - i - 1; ++j){
+                if(productDes.get(j+1).getPrice() > productDes.get(j).getPrice()){
+                    Product temp = productDes.get(j);
+                    productDes.set(j, productDes.get(j+1));
+                    productDes.set(j+1, temp);
+                }
+            }
+        }
+        for (Product strings : productDes)
+        {
+            System.out.println(strings);
+        }
+    }
+    public boolean checkID(String ID, ProductList productList){
+        for (Product product : productList.getProductList()){
+            if (ID.equals(product.getProductID())){
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean checkName(String Name, ProductList productList){
+        for (Product product : productList.getProductList()){
+            if (Name.equals(product.getProductName())){
+                return true;
+            }
+        }
+        return false;
+    }
     public String CSVString()
     {
         return String.format("%s,%s,%s,%s,%d,%d", getProductID(), getProductName(), getCategory(), getUnit(),
@@ -44,19 +113,9 @@ public class Product
         return productID;
     }
 
-    public void setProductID(String productID)
-    {
-        this.productID = productID;
-    }
-
     public String getProductName()
     {
         return productName;
-    }
-
-    public void setProductName(String productName)
-    {
-        this.productName = productName;
     }
 
     public String getCategory()

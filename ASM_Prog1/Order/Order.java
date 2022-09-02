@@ -1,17 +1,19 @@
 package ASM_Prog1.Order;
 
-import ASM_Prog1.Product.Product;
-
 import java.util.ArrayList;
-import java.util.List;
 
 public class Order {
-    private String orderID, status, userID, product, userName, dateTime;
+    private final String orderID, userID;
+    private String status, product, userName, dateTime;
     private int totalPaid;
     private boolean eventEffect;
 
-    public Order(){}
-    public Order(String orderID, String status, String userID, String userName, String product, int totalPaid, boolean eventEffect, String dateTime) {
+    public Order(String orderID, String userID){
+        this.orderID = orderID;
+        this.userID = userID;
+    }
+    public Order(String status, String userID, String userName, String product, int totalPaid, boolean eventEffect, String dateTime) {
+        String orderID = "O" + ((int) (Math.random() * 999999) + 1);
         this.orderID = orderID;
         this.status = status;
         this.userID = userID;
@@ -33,7 +35,7 @@ public class Order {
         return dailyOrder;
     }
 
-    public static void getOrderbyUser(String userID, OrderList orderList){
+    public static void getOrderByUser(String userID, OrderList orderList){
         ArrayList<Order> userOrder = new ArrayList<>();
         for (Order order: orderList.getOrderList()){
             if(userID.equalsIgnoreCase(order.getOrderUserID())){
@@ -44,6 +46,7 @@ public class Order {
             System.out.println("User had no order or wrong User ID");
         }
         else{
+            System.out.println("[ORDER_ID,STATUS,USER_ID,USERNAME,PRODUCT,TOTAL_PAID,EVENT_EFFECT,DATETIME]");
             for(Order order: userOrder){
                 System.out.println(order);
             }
@@ -78,9 +81,6 @@ public class Order {
     public String getOrderID(){
         return this.orderID;
     }
-    public void setOrderID(String ID){
-        this.orderID = ID;
-    }
     public String getOrderStatus(){
         return this.status;
     }
@@ -89,9 +89,6 @@ public class Order {
     }
     public String getOrderUserID(){
         return this.userID;
-    }
-    public void setOrderUserID(String userID){
-        this.userID = userID;
     }
     public String getOrderUserName(){
         return this.userName;

@@ -51,7 +51,7 @@ public class EventList {
     }
     public void displayEventList()
     {
-        System.out.println("[EVENTID, EVENTNAME, PERCENTAGEDISCOUNT, STARTDATE, ENDDATE, DESCRIPTION, STATUS]");
+        System.out.println("[EVENT_ID,EVENT_NAME,PERCENTAGE_DISCOUNT,START_DATE,END_DATE,DESCRIPTION,STATUS]");
         for (Event strings : this.eventList)
         {
             System.out.println(strings);
@@ -77,7 +77,7 @@ public class EventList {
     {
         File fileSrc = new File("src/Data/events.csv");
         FileWriter fileWriterSrc = new FileWriter(fileSrc);
-        fileWriterSrc.write("EVENTID, EVENTNAME, PERCENTAGEDISCOUNT, STARTDATE, ENDDATE, DESCRIPTION, STATUS" + "\n");
+        fileWriterSrc.write("EVENT_ID,EVENT_NAME,PERCENTAGE_DISCOUNT,START_DATE,END_DATE,DESCRIPTION,STATUS" + "\n");
         for (Event event : this.eventList)
         {
             fileWriterSrc.write(event.CSVString() + "\n");

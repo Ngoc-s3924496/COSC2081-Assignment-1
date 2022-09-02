@@ -53,7 +53,6 @@ public class test {
         Admin admin = new Admin();
         Scanner inputObj = new Scanner(System.in);
         if (verified == 0){
-            System.out.println(admin.getUsername() + " " + admin.getPassword());
             System.out.println("Enter admin username: ");
             String username = inputObj.nextLine();
             System.out.println("Enter admin password: ");
@@ -96,10 +95,7 @@ public class test {
                     admin.viewProducts(productList);
                     goBackAdmin(productList, orderList, eventList);
                 }
-                case 4 -> {
-
-                    goBackAdmin(productList, orderList, eventList);
-                }
+                case 4 -> goBackAdmin(productList, orderList, eventList);
                 case 5 -> {
                     admin.viewEvent(eventList);
                     goBackAdmin(productList, orderList, eventList);
@@ -128,9 +124,7 @@ public class test {
                     admin.updateOrderStatus(orderList);
                     goBackAdmin(productList, orderList, eventList);
                 }
-                case 12 -> {
-                    pageStart(productList, orderList, eventList);
-                }
+                case 12 -> pageStart(productList, orderList, eventList);
             }
 
         }
@@ -172,16 +166,14 @@ public class test {
                 goBackCustomer(productList, orderList, eventList);
             }
             case 4 -> {
-
+                customer.searchProduct(productList);
                 goBackCustomer(productList, orderList, eventList);
             }
             case 5 -> {
-
+                customer.sortPrice(productList);
                 goBackCustomer(productList, orderList, eventList);
             }
-            case 6 -> {
-                pageStart(productList, orderList, eventList);
-            }
+            case 6 -> pageStart(productList, orderList, eventList);
         }
     }
 

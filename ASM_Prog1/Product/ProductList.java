@@ -39,9 +39,7 @@ public class ProductList
         while ((line = bufferedReader.readLine()) != null)
         {
             arr = List.of(line.split(delimiter));
-            Product product = new Product();
-            product.setProductID(arr.get(0));
-            product.setProductName(arr.get(1));
+            Product product = new Product(arr.get(0), arr.get(1));
             product.setCategory(arr.get(2));
             product.setUnit(arr.get(3));
             product.setQuantity(Integer.parseInt(arr.get(4)));

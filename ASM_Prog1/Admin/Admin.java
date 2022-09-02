@@ -9,7 +9,6 @@ import ASM_Prog1.Event.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Scanner;
 
 public class Admin {
@@ -34,9 +33,15 @@ public class Admin {
     }
 
     public void addProduct(ProductList productList){
+        Product product = new Product("0","0");
         Scanner inputObj = new Scanner(System.in);
         System.out.println("Enter the product name");
         String productName = inputObj.nextLine();
+        while (product.checkName(productName, productList)) {
+            System.out.println("Name already exist");
+            System.out.println("Enter a different name");
+            productName = inputObj.nextLine();
+        }
         System.out.println("Enter the product category");
         String category = inputObj.nextLine();
         System.out.println("Enter the product unit");
@@ -45,7 +50,7 @@ public class Admin {
         int quantity = inputObj.nextInt();
         System.out.println("Enter the product price");
         int price = inputObj.nextInt();
-        Product newProduct = new Product(productName, category, unit, quantity, price);
+        Product newProduct = new Product(productName, category, unit, quantity, price, productList);
         productList.addNewProduct(newProduct);
     }
 
@@ -60,11 +65,11 @@ public class Admin {
         orderList.displayOrderList();
     }
     public void viewUserOrders(OrderList orderList){
-        Order order = new Order();
+        Order order = new Order("0", "0");
         Scanner inputObj = new Scanner(System.in);
         System.out.println("Enter User ID: ");
         String userID = inputObj.nextLine();
-        order.getOrderbyUser(userID, orderList);
+        order.getOrderByUser(userID, orderList);
     }
     public void viewEvent(EventList eventList){
         eventList.displayEventList();

@@ -1,8 +1,5 @@
 package ASM_Prog1.Order;
 
-import ASM_Prog1.Product.Product;
-import ASM_Prog1.Product.ProductList;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +34,7 @@ public class OrderList {
         while ((line = bufferedReader.readLine()) != null)
         {
             arr = List.of(line.split(delimiter));
-            Order order = new Order();
+            Order order = new Order(orderID, userID);
             order.setOrderID(arr.get(0));
             order.setOrderStatus(arr.get(1));
             order.setOrderUserID(arr.get(2));
@@ -54,7 +51,7 @@ public class OrderList {
 
     public void displayOrderList()
     {
-        System.out.println("[ORDERID,STATUS,USERID,USERNAME,PRODUCT,TOTALPAID,EVENTEFFECT,DATETIME]");
+        System.out.println("[ORDER_ID,STATUS,USER_ID,USERNAME,PRODUCT,TOTAL_PAID,EVENT_EFFECT,DATETIME]");
         for (Order strings : this.orderList)
         {
             System.out.println(strings);
@@ -92,7 +89,7 @@ public class OrderList {
     {
         File fileSrc = new File("src/Data/orders.csv");
         FileWriter fileWriterSrc = new FileWriter(fileSrc);
-        fileWriterSrc.write("ORDERID,STATUS,USERID,USERNAME,PRODUCT,TOTALPAID,EVENTEFFECT,DATETIME" + "\n");
+        fileWriterSrc.write("ORDER_ID,STATUS,USER_ID,USERNAME,PRODUCT,TOTAL_PAID,EVENT_EFFECT,DATETIME" + "\n");
         for (Order order : this.orderList)
         {
             fileWriterSrc.write(order.CSVString() + "\n");
