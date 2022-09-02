@@ -1,9 +1,8 @@
 package ASM_Prog1.Admin;
 
 import ASM_Prog1.Event.EventList;
-import ASM_Prog1.Order.Daily;
-import ASM_Prog1.Order.Order;
-import ASM_Prog1.Order.OrderList;
+import ASM_Prog1.Member.MemberList;
+import ASM_Prog1.Order.*;
 import ASM_Prog1.Product.*;
 import ASM_Prog1.Event.*;
 
@@ -74,6 +73,7 @@ public class Admin {
     public void viewEvent(EventList eventList){
         eventList.displayEventList();
     }
+    public void viewMember(MemberList memberList){memberList.displayMemberList();}
     public void addEvent(EventList eventList) throws ParseException {
         Scanner inputObj = new Scanner(System.in);
         System.out.println("Enter the event name");
@@ -100,7 +100,7 @@ public class Admin {
         endDate = dateInput(endDate);
         System.out.println("Enter the event description");
         String description = inputObj.nextLine();
-        Event newEvent = new Event(eventName, discount, startDate, endDate, description);
+        Event newEvent = new Event(eventName, discount, startDate, endDate, description, eventList);
         eventList.addNewEvent(newEvent);
     }
     public void removeEvent(EventList eventList){

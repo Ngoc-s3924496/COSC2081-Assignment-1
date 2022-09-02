@@ -62,6 +62,7 @@ public class ProductList
     public void addNewProduct(Product productInput)
     {
         this.productList.add(productInput);
+        System.out.println("Product add successfully");
     }
 
     public void removeProduct(String productID)
@@ -90,7 +91,17 @@ public class ProductList
         }
         System.out.println("No product found.");
     }
-
+    public void updateQuantity(String productID, int quantity)
+    {
+        for (Product products : this.productList)
+        {
+            if (Objects.equals(products.getProductID(), productID))
+            {
+                products.setQuantity(quantity);
+                return;
+            }
+        }
+    }
     public void saveToCSV() throws IOException
     {
         File fileSrc = new File("src/Data/products.csv");

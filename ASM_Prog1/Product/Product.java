@@ -47,6 +47,16 @@ public class Product
             }
         }
     }
+    public Product getProductByID(String productID, ProductList productList){
+        Product searchProduct = new Product("0", "0");
+        for (Product product : productList.getProductList()){
+            if (productID.equalsIgnoreCase(product.getProductID())){
+                searchProduct = product;
+                return searchProduct;
+            }
+        }
+        return searchProduct;
+    }
     public static void ascPrice(ProductList productList){
         ArrayList<Product> productDes = productList.getProductList();
         for (int i = 0; i < productDes.size(); ++i){

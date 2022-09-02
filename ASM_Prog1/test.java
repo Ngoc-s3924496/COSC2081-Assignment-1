@@ -3,6 +3,7 @@ package ASM_Prog1;
 import ASM_Prog1.Admin.Admin;
 import ASM_Prog1.Customer.Customer;
 import ASM_Prog1.Event.EventList;
+import ASM_Prog1.Member.*;
 import ASM_Prog1.Order.OrderList;
 import ASM_Prog1.Product.*;
 
@@ -18,10 +19,12 @@ public class test {
         ProductList productList = new ProductList();
         OrderList orderList = new OrderList();
         EventList eventList = new EventList();
-        pageStart(productList, orderList, eventList);
+        MemberList memberList = new MemberList();
+        pageStart(productList, orderList, eventList, memberList);
     }
 
-    public static void pageStart(ProductList productList, OrderList orderList, EventList eventList) throws IOException, URISyntaxException, ParseException {
+    public static void pageStart(ProductList productList, OrderList orderList, EventList eventList,
+                                 MemberList memberList) throws IOException, URISyntaxException, ParseException {
         System.out.println("COSC2081 GROUP ASSIGNMENT");
         System.out.println("STORE ORDER MANAGEMENT SYSTEM");
         System.out.println("Instructor: Mr. Minh Vu");
@@ -43,13 +46,14 @@ public class test {
             input = inputObj.nextInt();
         }
         switch (input) {
-            case 1 -> pageAdmin(productList, orderList, eventList, 0);
-            case 2 -> pageCustomer(productList, orderList, eventList);
-            case 3 -> pageEnd(productList, orderList, eventList);
+            case 1 -> pageAdmin(productList, orderList, eventList, memberList, 0);
+            case 2 -> pageCustomer(productList, orderList, eventList, memberList);
+            case 3 -> pageEnd(productList, orderList, eventList, memberList);
         }
     }
 
-    public static void pageAdmin(ProductList productList, OrderList orderList, EventList eventList, int verified) throws IOException, URISyntaxException, ParseException {
+    public static void pageAdmin(ProductList productList, OrderList orderList, EventList eventList,
+                                 MemberList memberList, int verified) throws IOException, URISyntaxException, ParseException {
         Admin admin = new Admin();
         Scanner inputObj = new Scanner(System.in);
         if (verified == 0){
@@ -85,58 +89,61 @@ public class test {
             switch (action) {
                 case 1 -> {
                     admin.viewOrders(orderList);
-                    goBackAdmin(productList, orderList, eventList);
+                    goBackAdmin(productList, orderList, eventList, memberList);
                 }
                 case 2 -> {
                     admin.viewUserOrders(orderList);
-                    goBackAdmin(productList, orderList, eventList);
+                    goBackAdmin(productList, orderList, eventList, memberList);
                 }
                 case 3 -> {
                     admin.viewProducts(productList);
-                    goBackAdmin(productList, orderList, eventList);
+                    goBackAdmin(productList, orderList, eventList, memberList);
                 }
-                case 4 -> goBackAdmin(productList, orderList, eventList);
+                case 4 -> {
+                    admin.viewMember(memberList);
+                    goBackAdmin(productList, orderList, eventList, memberList);
+                }
                 case 5 -> {
                     admin.viewEvent(eventList);
-                    goBackAdmin(productList, orderList, eventList);
+                    goBackAdmin(productList, orderList, eventList, memberList);
                 }
                 case 6 -> {
                     admin.getDailyRevenue(orderList);
-                    goBackAdmin(productList, orderList, eventList);
+                    goBackAdmin(productList, orderList, eventList, memberList);
                 }
                 case 7 -> {
                     admin.addProduct(productList);
-                    goBackAdmin(productList, orderList, eventList);
+                    goBackAdmin(productList, orderList, eventList, memberList);
                 }
                 case 8 -> {
                     admin.removeProduct(productList);
-                    goBackAdmin(productList, orderList, eventList);
+                    goBackAdmin(productList, orderList, eventList, memberList);
                 }
                 case 9 -> {
                     admin.addEvent(eventList);
-                    goBackAdmin(productList, orderList, eventList);
+                    goBackAdmin(productList, orderList, eventList, memberList);
                 }
                 case 10 -> {
                     admin.updateProductPrice(productList);
-                    goBackAdmin(productList, orderList, eventList);
+                    goBackAdmin(productList, orderList, eventList, memberList);
                 }
                 case 11 -> {
                     admin.updateOrderStatus(orderList);
-                    goBackAdmin(productList, orderList, eventList);
+                    goBackAdmin(productList, orderList, eventList, memberList);
                 }
-                case 12 -> pageStart(productList, orderList, eventList);
+                case 12 -> pageStart(productList, orderList, eventList, memberList);
             }
 
         }
         else{
             System.out.println("Wrong username or password");
             lineBreak();
-            pageStart(productList, orderList, eventList);
+            pageStart(productList, orderList, eventList, memberList);
         }
     }
 
-    public static void pageCustomer(ProductList productList, OrderList orderList, EventList eventList)
-            throws IOException, URISyntaxException, ParseException {
+    public static void pageCustomer(ProductList productList, OrderList orderList, EventList eventList,
+                                    MemberList memberList) throws IOException, URISyntaxException, ParseException {
         Scanner inputObj = new Scanner(System.in);
         System.out.println("Welcome to Team 925 shop!");
         System.out.println("[1]: Register membership");
@@ -154,30 +161,81 @@ public class test {
         Customer customer = new Customer();
         switch (action){
             case 1 -> {
-
-                goBackCustomer(productList, orderList, eventList);
+                customer.registerMembership(memberList);
+                goBackCustomer(productList, orderList, eventList, memberList);
             }
             case 2 -> {
-
-                goBackCustomer(productList, orderList, eventList);
+                Member member = customer.logIn(memberList);
+                if (member.getUserID() == "0"){
+                    System.out.println("Wrong username or password");
+                    goBackCustomer(productList, orderList, eventList, memberList);
+                }
+                else{
+                    pageMember(member, productList, orderList, eventList, memberList);
+                }
             }
             case 3 -> {
                 customer.viewProducts(productList);
-                goBackCustomer(productList, orderList, eventList);
+                goBackCustomer(productList, orderList, eventList, memberList);
             }
             case 4 -> {
                 customer.searchProduct(productList);
-                goBackCustomer(productList, orderList, eventList);
+                goBackCustomer(productList, orderList, eventList, memberList);
             }
             case 5 -> {
                 customer.sortPrice(productList);
-                goBackCustomer(productList, orderList, eventList);
+                goBackCustomer(productList, orderList, eventList, memberList);
             }
-            case 6 -> pageStart(productList, orderList, eventList);
+            case 6 -> pageStart(productList, orderList, eventList, memberList);
+        }
+    }
+    public static void pageMember(Member member, ProductList productList, OrderList orderList, EventList eventList,
+                                  MemberList memberList) throws IOException, URISyntaxException, ParseException {
+        Scanner inputObj = new Scanner(System.in);
+        System.out.printf("Welcome %s!" + "\n", member.getUserName());
+        System.out.println("[1]: View account information");
+        System.out.println("[2]: View all products");
+        System.out.println("[3]: View events");
+        System.out.println("[4]: Make an order");
+        System.out.println("[5]: View order");
+        System.out.println("[6]: Log out");
+        System.out.println("Enter your action: ");
+        int action = inputObj.nextInt();
+        while (action >  6 ||  action < 1){
+            System.out.println("Please enter your action: ");
+            action = inputObj.nextInt();
+        }
+        MemberCLI memberCLI = new MemberCLI();
+        switch (action){
+            case 1 -> {
+                memberCLI.viewAccountInfo(member);
+                goBackMember(member, productList, orderList, eventList, memberList);
+            }
+            case 2 -> {
+                memberCLI.viewProducts(productList);
+                goBackMember(member, productList, orderList, eventList, memberList);
+            }
+            case 3 -> {
+                memberCLI.viewEvent(eventList);
+                goBackMember(member, productList, orderList, eventList, memberList);
+            }
+            case 4 -> {
+                memberCLI.makeOrder(member, productList, orderList, eventList, memberList);
+                goBackMember(member, productList, orderList, eventList, memberList);
+            }
+            case 5 ->{
+                memberCLI.viewOrders(member, orderList);
+                goBackMember(member, productList, orderList, eventList, memberList);
+            }
+            case 6 -> {
+                pageStart(productList, orderList, eventList, memberList);
+            }
+
         }
     }
 
-    public static void pageEnd(ProductList productList,OrderList orderList,EventList eventList) throws IOException {
+    public static void pageEnd(ProductList productList,OrderList orderList,EventList eventList, MemberList memberList)
+            throws IOException {
         productList.saveToCSV();
         orderList.saveToCSV();
         eventList.saveToCSV();
@@ -192,7 +250,8 @@ public class test {
         }
     }
 
-    public static void goBackAdmin(ProductList productList, OrderList orderList, EventList eventList) throws IOException, URISyntaxException, ParseException {
+    public static void goBackAdmin(ProductList productList, OrderList orderList, EventList eventList,
+                                   MemberList memberList) throws IOException, URISyntaxException, ParseException {
         Scanner inputObj = new Scanner(System.in);
         System.out.println("[1] Go back     [2] Log out");
         int choice = inputObj.nextInt();
@@ -203,14 +262,15 @@ public class test {
         }
 
         if (choice == 1) {
-            pageAdmin(productList, orderList, eventList, 1);
+            pageAdmin(productList, orderList, eventList, memberList, 1);
         }
         else{
             lineBreak();
-            pageStart(productList, orderList, eventList);
+            pageStart(productList, orderList, eventList, memberList);
         }
     }
-    public static void goBackCustomer(ProductList productList, OrderList orderList, EventList eventList) throws IOException, URISyntaxException, ParseException {
+    public static void goBackCustomer(ProductList productList, OrderList orderList, EventList eventList,
+                                      MemberList memberList) throws IOException, URISyntaxException, ParseException {
         Scanner inputObj = new Scanner(System.in);
         System.out.println("[1] Go back     [2] Log out");
         int choice = inputObj.nextInt();
@@ -221,11 +281,30 @@ public class test {
         }
 
         if (choice == 1) {
-            pageCustomer(productList, orderList, eventList);
+            pageCustomer(productList, orderList, eventList, memberList);
         }
         else{
             lineBreak();
-            pageStart(productList, orderList, eventList);
+            pageStart(productList, orderList, eventList, memberList);
+        }
+    }
+    public static void goBackMember(Member member, ProductList productList, OrderList orderList, EventList eventList,
+                                      MemberList memberList) throws IOException, URISyntaxException, ParseException {
+        Scanner inputObj = new Scanner(System.in);
+        System.out.println("[1] Go back     [2] Log out");
+        int choice = inputObj.nextInt();
+        while (choice > 2 || choice < 1) {
+            System.out.println("Input is only 1 or 2");
+            System.out.println("Please retype your input: ");
+            choice = inputObj.nextInt();
+        }
+
+        if (choice == 1) {
+            pageMember(member,productList, orderList, eventList, memberList);
+        }
+        else{
+            lineBreak();
+            pageStart(productList, orderList, eventList, memberList);
         }
     }
 }

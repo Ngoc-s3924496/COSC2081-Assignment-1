@@ -34,10 +34,8 @@ public class OrderList {
         while ((line = bufferedReader.readLine()) != null)
         {
             arr = List.of(line.split(delimiter));
-            Order order = new Order(orderID, userID);
-            order.setOrderID(arr.get(0));
+            Order order = new Order(arr.get(0), arr.get(2));
             order.setOrderStatus(arr.get(1));
-            order.setOrderUserID(arr.get(2));
             order.setOrderUserName(arr.get(3));
             order.setOrderProduct(arr.get(4));
             order.setOrderTotalPaid(Integer.parseInt(arr.get(5)));
@@ -51,7 +49,7 @@ public class OrderList {
 
     public void displayOrderList()
     {
-        System.out.println("[ORDER_ID,STATUS,USER_ID,USERNAME,PRODUCT,TOTAL_PAID,EVENT_EFFECT,DATETIME]");
+        System.out.println("[ORDER_ID,STATUS,USER_ID,USERNAME,PRODUCT,QUANTITY,TOTAL_PAID,EVENT_EFFECT,DATETIME]");
         for (Order strings : this.orderList)
         {
             System.out.println(strings);
@@ -59,6 +57,7 @@ public class OrderList {
     }
     public void addNewOrder(Order order){
         this.orderList.add(order);
+        System.out.println("Order added successfully");
     }
     public void removeOrder(String orderID){
         for (Order order : this.orderList)
@@ -89,7 +88,7 @@ public class OrderList {
     {
         File fileSrc = new File("src/Data/orders.csv");
         FileWriter fileWriterSrc = new FileWriter(fileSrc);
-        fileWriterSrc.write("ORDER_ID,STATUS,USER_ID,USERNAME,PRODUCT,TOTAL_PAID,EVENT_EFFECT,DATETIME" + "\n");
+        fileWriterSrc.write("ORDER_ID,STATUS,USER_ID,USERNAME,PRODUCT,QUANTITY,TOTAL_PAID,EVENT_EFFECT,DATETIME" + "\n");
         for (Order order : this.orderList)
         {
             fileWriterSrc.write(order.CSVString() + "\n");

@@ -1,27 +1,43 @@
 package ASM_Prog1.Order;
 
+import ASM_Prog1.Product.Product;
+import ASM_Prog1.Product.ProductList;
+
 import java.util.ArrayList;
 
 public class Order {
     private final String orderID, userID;
     private String status, product, userName, dateTime;
-    private int totalPaid;
+    private int totalPaid, quantity;
     private boolean eventEffect;
 
     public Order(String orderID, String userID){
         this.orderID = orderID;
         this.userID = userID;
     }
-    public Order(String status, String userID, String userName, String product, int totalPaid, boolean eventEffect, String dateTime) {
+    public Order(String status, String userID, String userName, String product, int quantity,
+                 int totalPaid, boolean eventEffect, String dateTime, OrderList orderList) {
         String orderID = "O" + ((int) (Math.random() * 999999) + 1);
+        while (checkID(orderID, orderList)){
+            orderID = "O" + ((int) (Math.random() * 999999) + 1);
+        }
         this.orderID = orderID;
         this.status = status;
         this.userID = userID;
         this.userName = userName;
         this.product = product;
+        this.quantity = quantity;
         this.totalPaid = totalPaid;
         this.eventEffect = eventEffect;
         this.dateTime = dateTime;
+    }
+    public boolean checkID(String ID, OrderList orderList) {
+        for (Order order : orderList.getOrderList()) {
+            if (ID.equals(order.getOrderID())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static ArrayList<Order> getOrderByDate(String date, OrderList orderList){
@@ -46,7 +62,7 @@ public class Order {
             System.out.println("User had no order or wrong User ID");
         }
         else{
-            System.out.println("[ORDER_ID,STATUS,USER_ID,USERNAME,PRODUCT,TOTAL_PAID,EVENT_EFFECT,DATETIME]");
+            System.out.println("[ORDER_ID,STATUS,USER_ID,USERNAME,PRODUCT,QUANTITY,TOTAL_PAID,EVENT_EFFECT,DATETIME]");
             for(Order order: userOrder){
                 System.out.println(order);
             }
@@ -67,15 +83,15 @@ public class Order {
 
     public String CSVString()
     {
-        return String.format("%s,%s,%s,%s,%s,%d,%b,%s", getOrderID(), getOrderStatus(), getOrderUserID(), getOrderUserName(),
-                getOrderProduct(), getOrderTotalPaid(), getOrderEventEffect(), getOrderDateTime());
+        return String.format("%s,%s,%s,%s,%s,%d,%d,%b,%s", getOrderID(), getOrderStatus(), getOrderUserID(), getOrderUserName(),
+                getOrderProduct(), getProductQuantity(), getOrderTotalPaid(), getOrderEventEffect(), getOrderDateTime());
     }
     @Override
     public String toString()
     {
         return "[" +
                 orderID + ", " + status + ", " + userID + ", " + userName +
-                ", " + totalPaid + ", " + eventEffect + ", " + dateTime + ']';
+                ", " + product + ", " + quantity + ", " + totalPaid + ", " + eventEffect + ", " + dateTime + ']';
     }
 
     public String getOrderID(){
@@ -102,6 +118,8 @@ public class Order {
     public void setOrderProduct(String product){
         this.product = product;
     }
+    public int getProductQuantity(){return this.quantity;}
+    public void setProductQuantity(int quantity){this.quantity = quantity;}
     public int getOrderTotalPaid(){
         return this.totalPaid;
     }

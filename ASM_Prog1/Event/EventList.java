@@ -1,13 +1,8 @@
 package ASM_Prog1.Event;
 
-import ASM_Prog1.Order.Order;
-import ASM_Prog1.Order.OrderList;
-import ASM_Prog1.Product.Product;
-
 import java.io.*;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -25,7 +20,7 @@ public class EventList {
     public static ArrayList<Event> getEventList() {
         return eventList;
     }
-    private static ArrayList<Event> readFile(String csvFile) throws IOException, ParseException {
+    public static ArrayList<Event> readFile(String csvFile) throws IOException, ParseException {
         ArrayList<Event> finalArr = new ArrayList<>();
         File file = new File(csvFile);
         FileReader fileReader = new FileReader(file);
@@ -36,8 +31,7 @@ public class EventList {
         while ((line = bufferedReader.readLine()) != null)
         {
             arr = List.of(line.split(delimiter));
-            Event event = new Event();
-            event.setEventID(arr.get(0));
+            Event event = new Event(arr.get(0));
             event.setEventName(arr.get(1));
             event.setPercentageDiscount(Integer.parseInt(arr.get(2)));
             event.setStartDate(arr.get(3));
@@ -60,6 +54,7 @@ public class EventList {
     public void addNewEvent(Event eventInput)
     {
         this.eventList.add(eventInput);
+        System.out.println("Event add successfully");
     }
     public void removeEvent(String eventName) {
         for (Event event : this.eventList)

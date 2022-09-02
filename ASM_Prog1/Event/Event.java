@@ -1,6 +1,8 @@
 package ASM_Prog1.Event;
 
-import java.text.DateFormat;
+import ASM_Prog1.Order.Order;
+import ASM_Prog1.Order.OrderList;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -9,7 +11,7 @@ import java.util.Date;
 
 public class Event
 {
-    private String eventID;
+    private final String eventID;
     private String eventName;
     private int percentageDiscount;
     private String eventDescription;
@@ -17,23 +19,42 @@ public class Event
     private String endDate;
     private boolean eventStatus;
 
-    public Event()
+    public Event(String eventID)
     {
+        this.eventID = eventID;
     }
 
-    public Event(String eventName, int percentageDiscount, String startDate, String endDate, String eventDescription) throws ParseException {
-        this.eventID = "E" + ((int) (Math.random() * 999999) + 1);
+    public Event(String eventName, int percentageDiscount, String startDate, String endDate,
+                 String eventDescription, EventList eventList) throws ParseException {
+        String ID = "E" + ((int) (Math.random() * 999999) + 1);
+        while (IDCheck(ID, eventList)){
+            ID = "E" + ((int) (Math.random() * 999999) + 1);
+        }
+        this.eventID = ID;
         this.eventName = eventName;
         this.percentageDiscount = percentageDiscount;
         this.startDate = startDate;
         this.endDate = endDate;
         this.eventDescription = eventDescription;
-        this.eventStatus = this.dayCheck(new Date(), stringToDate(this.endDate));
+        this.eventStatus = (this.dayCheck1(new Date(), stringToDate(this.endDate)) &&
+                dayCheck2(new Date(), stringToDate(this.startDate)));
     }
 
-    public boolean dayCheck(Date today, Date endDate)
+    public boolean dayCheck1(Date today, Date endDate)
     {
         return (today.before(endDate));
+    }
+    public boolean dayCheck2(Date today, Date startDate)
+    {
+        return (today.after(startDate));
+    }
+    public boolean IDCheck(String ID, EventList eventList) {
+        for (Event event : eventList.getEventList()) {
+            if (ID.equals(event.getEventID())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public Date stringToDate(String date) throws ParseException
@@ -91,11 +112,6 @@ public class Event
         return eventID;
     }
 
-    public void setEventID(String eventID)
-    {
-        this.eventID = eventID;
-    }
-
     public String getEventDescription()
     {
         return eventDescription;
@@ -132,6 +148,7 @@ public class Event
     }
 
     public void setEventStatus(String eventStatus) throws ParseException {
-        this.eventStatus = this.dayCheck(new Date(), stringToDate(this.endDate));
+        this.eventStatus = (this.dayCheck1(new Date(), stringToDate(this.endDate)) &&
+                dayCheck2(new Date(), stringToDate(this.startDate)));
     }
 }
