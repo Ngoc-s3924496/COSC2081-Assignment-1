@@ -67,7 +67,7 @@ public class Order {
         }
     }
 
-    public static void getOrderListByUser(String userID) {
+    public static void getOrderByOrderID(String userID) {
         Scanner inputObj = new Scanner(System.in);
         ArrayList<Order> userOrder = new ArrayList<>();
         for (Order order: OrderList.getOrderList()){

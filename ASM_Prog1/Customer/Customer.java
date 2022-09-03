@@ -57,9 +57,9 @@ public class Customer {
     }
     public void searchProduct(){
         Scanner inputObj = new Scanner(System.in);
-        System.out.println("Enter the product name");
-        String productName = inputObj.nextLine();
-        Product.searchProduct(productName);
+        System.out.println("Enter the product name or the product category");
+        String productInfo = inputObj.nextLine();
+        Product.searchProduct(productInfo);
     }
     public void sortPrice(){
         Scanner inputObj = new Scanner(System.in);

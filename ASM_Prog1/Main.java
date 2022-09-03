@@ -159,7 +159,7 @@ public class Main {
         System.out.println("Welcome to Team 925 shop!");
         System.out.println("[1]: Register membership");
         System.out.println("[2]: Login");
-        System.out.println("[3]: View product");
+        System.out.println("[3]: View all products");
         System.out.println("[4]: Search product");
         System.out.println("[5]: Sort product by price");
         System.out.println("[6]: Log out");
@@ -190,6 +190,8 @@ public class Main {
                 goBackCustomer(productList, orderList, eventList, memberList);
             }
             case 4 -> {
+                Category c = new Category();
+                c.displayCategory();
                 customer.searchProduct();
                 goBackCustomer(productList, orderList, eventList, memberList);
             }
@@ -230,6 +232,8 @@ public class Main {
                 goBackMember(member, productList, orderList, eventList, memberList);
             }
             case 3 -> {
+                Category c = new Category();
+                c.displayCategory();
                 memberCLI.searchProduct();
                 goBackMember(member, productList, orderList, eventList, memberList);
             }

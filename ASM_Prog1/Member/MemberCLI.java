@@ -31,7 +31,7 @@ public class MemberCLI extends Customer {
     }
     public void viewOrderByOrderID(Member member) {
         String userID = member.getUserID();
-        Order.getOrderListByUser(userID);
+        Order.getOrderByOrderID(userID);
     }
     public void makeOrder(Member member, ProductList productList, OrderList orderList,
                           MemberList memberList){

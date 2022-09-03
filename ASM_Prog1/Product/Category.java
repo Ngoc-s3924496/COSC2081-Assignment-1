@@ -18,7 +18,7 @@ public class Category
 
     public void addCategory(String newCategory)
     {
-        this.availableCategory.add(newCategory);
+        availableCategory.add(newCategory);
     }
 
     public List<String> getAvailableCategory()
