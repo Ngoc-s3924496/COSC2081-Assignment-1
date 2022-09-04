@@ -66,7 +66,7 @@ public class Main
         {
             case 1 -> pageAdmin(productList, orderList, eventList, memberList, 0);
             case 2 -> pageCustomer(productList, orderList, eventList, memberList);
-            case 3 -> pageEnd(productList, orderList, eventList, memberList);
+            case 3 -> pageEnd();
         }
     }
 
@@ -146,30 +146,37 @@ public class Main
                 }
                 case 7 -> {
                     admin.addProduct(productList);
+                    productList.saveToCSV();
                     goBackAdmin(productList, orderList, eventList, memberList);
                 }
                 case 8 -> {
                     admin.addEvent(eventList);
+                    eventList.saveToCSV();
                     goBackAdmin(productList, orderList, eventList, memberList);
                 }
                 case 9 -> {
                     admin.removeProduct(productList);
+                    productList.saveToCSV();
                     goBackAdmin(productList, orderList, eventList, memberList);
                 }
                 case 10 -> {
                     admin.removeEvent(eventList);
+                    eventList.saveToCSV();
                     goBackAdmin(productList, orderList, eventList, memberList);
                 }
                 case 11 -> {
                     admin.removeOrder(orderList);
+                    orderList.saveToCSV();
                     goBackAdmin(productList, orderList, eventList, memberList);
                 }
                 case 12 -> {
                     admin.updateProductPrice(productList);
+                    productList.saveToCSV();
                     goBackAdmin(productList, orderList, eventList, memberList);
                 }
                 case 13 -> {
                     admin.updateOrderStatus(orderList);
+                    orderList.saveToCSV();
                     goBackAdmin(productList, orderList, eventList, memberList);
                 }
                 case 14 -> pageStart(productList, orderList, eventList, memberList);
@@ -212,6 +219,7 @@ public class Main
         {
             case 1 -> {
                 customer.registerMembership(memberList);
+                memberList.saveToCSV();
                 goBackCustomer(productList, orderList, eventList, memberList);
             }
             case 2 -> {
@@ -258,7 +266,6 @@ public class Main
         System.out.println("[7]: View all orders");
         System.out.println("[8]: View order by order ID");
         System.out.println("[9]: Log out");
-        System.out.println("Enter your action: ");
         while (action < 0 || action > 9)
         {
             try
@@ -298,6 +305,9 @@ public class Main
             }
             case 6 -> {
                 memberCLI.makeOrder(member, productList, orderList, memberList);
+                productList.saveToCSV();
+                orderList.saveToCSV();
+                memberList.saveToCSV();
                 goBackMember(member, productList, orderList, eventList, memberList);
             }
             case 7 -> {
@@ -312,13 +322,8 @@ public class Main
         }
     }
 
-    public static void pageEnd(ProductList productList, OrderList orderList, EventList eventList, MemberList memberList)
-            throws IOException
+    public static void pageEnd()
     {
-        productList.saveToCSV();
-        orderList.saveToCSV();
-        eventList.saveToCSV();
-        memberList.saveToCSV();
         lineBreak();
         System.out.println("Thank you for visiting us!");
     }

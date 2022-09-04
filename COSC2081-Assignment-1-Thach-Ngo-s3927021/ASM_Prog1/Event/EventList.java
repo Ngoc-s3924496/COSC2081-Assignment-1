@@ -10,7 +10,7 @@ public class EventList {
     private static ArrayList<Event> eventList = new ArrayList<>();
     private static final String delimiter = ",";
     private ArrayList<Event> setEventList() throws IOException, ParseException {
-        String filePath = "Data/events.csv";
+        String filePath = "src/Data/events.csv";
         return EventList.readFile(filePath);
     }
     public EventList() throws IOException, ParseException {
@@ -70,7 +70,7 @@ public class EventList {
     }
     public void saveToCSV() throws IOException
     {
-        File fileSrc = new File("Data/events.csv");
+        File fileSrc = new File("src/Data/events.csv");
         FileWriter fileWriterSrc = new FileWriter(fileSrc);
         fileWriterSrc.write("EVENT_ID,EVENT_NAME,PERCENTAGE_DISCOUNT,START_DATE,END_DATE,DESCRIPTION,STATUS" + "\n");
         for (Event event : eventList)

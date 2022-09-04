@@ -12,7 +12,7 @@ public class ProductList
 
     private ArrayList<Product> setProductList() throws IOException
     {
-        String filePath = "Data\\products.csv";
+        String filePath = "src/Data/products.csv";
         return ProductList.readFile(filePath);
     }
 
@@ -104,7 +104,7 @@ public class ProductList
     }
     public void saveToCSV() throws IOException
     {
-        File fileSrc = new File("Data/products.csv");
+        File fileSrc = new File("src/Data/products.csv");
         FileWriter fileWriterSrc = new FileWriter(fileSrc);
         fileWriterSrc.write("PRODUCT_ID,PRODUCT_NAME,CATEGORY,UNIT,QUANTITY,PRICE_PER_UNIT(VND)" + "\n");
         for (Product product : productList)
