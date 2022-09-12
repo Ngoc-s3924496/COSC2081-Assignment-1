@@ -1,3 +1,11 @@
+/*
+Author: Nguyen Minh Quan
+Student ID: s3927181
+Instructor: Dr. Minh Vu
+Version: OpenJDK 1.8 (Java 18)
+Date: 02/09/2022
+Purpose: This class contain actions related to products in the program
+ */
 package ASM_Prog1.Product;
 
 import java.util.ArrayList;

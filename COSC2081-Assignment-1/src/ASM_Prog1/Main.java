@@ -1,3 +1,11 @@
+/*
+Author: Duong Vu Thanh Ngoc
+Student ID: s3924496
+Instructor: Dr. Minh Vu
+Version: OpenJDK 1.8 (Java 18)
+Date: 02/09/2022
+Purpose: Main interface of the program
+ */
 package ASM_Prog1;
 
 import ASM_Prog1.Admin.Admin;

@@ -1,3 +1,11 @@
+/*
+Author: Doan Khanh Luan
+Student ID: s3926375
+Instructor: Dr. Minh Vu
+Version: OpenJDK 1.8 (Java 18)
+Date: 05/09/2022
+Purpose: This class representing shopping cart and its action
+ */
 package ASM_Prog1.Order;
 
 import ASM_Prog1.Product.Product;

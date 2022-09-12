@@ -1,3 +1,11 @@
+/*
+Author: Doan Khanh Luan
+Student ID: s3927181
+Instructor: Dr. Minh Vu
+Version: OpenJDK 1.8 (Java 18)
+Date: 02/09/2022
+Purpose: EventList class contains methods that work with the list of events in the database
+ */
 package ASM_Prog1.Event;
 
 import java.io.*;

@@ -1,3 +1,11 @@
+/*
+Author: Doan Khanh Luan
+Student ID: s396375
+Instructor: Dr. Minh Vu
+Version: OpenJDK 1.8 (Java 18)
+Date: 02/09/2022
+Purpose: Event class with event methods for the program
+ */
 package ASM_Prog1.Event;
 
 import java.text.ParseException;

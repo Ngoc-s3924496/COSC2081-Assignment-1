@@ -1,3 +1,11 @@
+/*
+Author: Ngo Tran Bao Thach
+Student ID: s3927021
+Instructor: Dr. Minh Vu
+Version: OpenJDK 1.8 (Java 18)
+Date: 01/09/2022
+Purpose: Member class for program's member functions
+ */
 package ASM_Prog1.Member;
 
 import ASM_Prog1.Customer.Customer;

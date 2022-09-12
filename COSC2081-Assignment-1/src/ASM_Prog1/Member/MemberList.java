@@ -1,3 +1,11 @@
+/*
+Author: Ngo Tran Bao Thach
+Student ID: s3927021
+Instructor: Dr. Minh Vu
+Version: OpenJDK 1.8 (Java 18)
+Date: 01/09/2022
+Purpose: MemberList class contains methods that work with list of members in database
+ */
 package ASM_Prog1.Member;
 
 import java.io.*;

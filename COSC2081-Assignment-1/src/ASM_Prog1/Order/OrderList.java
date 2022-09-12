@@ -1,3 +1,11 @@
+/*
+Author: Doan Khanh Luan
+Student ID: s3926375
+Instructor: Dr. Minh Vu
+Version: OpenJDK 1.8 (Java 18)
+Date: 05/09/2022
+Purpose: OrderList class contain methods that work with list of all orders
+ */
 package ASM_Prog1.Order;
 
 import java.io.*;

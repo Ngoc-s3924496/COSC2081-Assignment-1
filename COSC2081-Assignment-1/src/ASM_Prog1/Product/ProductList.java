@@ -1,3 +1,11 @@
+/*
+Author: Nguyen Minh Quan
+Student ID: s3927181
+Instructor: Dr. Minh Vu
+Version: OpenJDK 1.8 (Java 18)
+Date: 02/09/2022
+Purpose: ProductList class contains methods that work with list of product in the database
+ */
 package ASM_Prog1.Product;
 
 import java.io.*;
