@@ -1,6 +1,6 @@
 PRODUCT_ID,PRODUCT_NAME,CATEGORY,UNIT,QUANTITY,PRICE_PER_UNIT(VND)
-P246581,Alaxan,Medicine,box,28,125800
-P156736,Panadol,Medicine,box,100,234000
+P246581,Alaxan,Medicine,box,27,125800
+P156736,Panadol,Medicine,box,90,234000
 P132546,Berocca,Medicine,box,30,196800
 P597648,Biafine,Medicine,tube,30,95000
 P234684,Calcium Corbiere,Medicine,box,49,160800
@@ -32,7 +32,7 @@ P230158,Best BCAA protein shake,Dietary supplement,can,50,707000
 P315888,Oatmeal,Dietary supplement,box,40,220000
 P234874,Wrist support,Health care products,item,30,145000
 P321584,Cotton wool,Health care products,box,100,10000
-P321565,Band-aid,Health care products,item,100,5000
+P321565,Band-aid,Health care products,item,95,5000
 P638724,Sticking Plaster,Health care products,item,100,3000
 P231582,Bandage,Health care products,item,100,15000
 P321858,Pregnancy testing kit,Health care products,box,50,62000
@@ -66,4 +66,4 @@ P548756,Humasis COVID-19 Ag Home Test Kit,Medical equipment,box,20,2375000
 P648465,INSTI HIV Self Test,Medical equipment,box,18,399000
 P321884,Microlife W3 comfort,Medical equipment,item,10,720000
 P621564,Medical mask,Medical equipment,box,100,270000
-P654887,Medical glove,Medical equipment,box,50,15000
+P654887,Medical glove,Medical equipment,box,45,14000

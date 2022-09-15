@@ -10,7 +10,7 @@ public class OrderList {
     private static final String delimiter = ",";
     private ArrayList<Order> setOrderList() throws IOException
     {
-        String filePath = "Data/orders.csv";
+        String filePath = "src/Data/orders.csv";
         return OrderList.readFile(filePath);
     }
 
@@ -87,7 +87,7 @@ public class OrderList {
     }
     public void saveToCSV() throws IOException
     {
-        File fileSrc = new File("Data/orders.csv");
+        File fileSrc = new File("src/Data/orders.csv");
         FileWriter fileWriterSrc = new FileWriter(fileSrc);
         fileWriterSrc.write("ORDER_ID,STATUS,USER_ID,USERNAME,PRODUCT,QUANTITY,TOTAL_PAID,EVENT_EFFECT,DATETIME" + "\n");
         for (Order order : orderList)

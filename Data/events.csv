@@ -1,4 +1,8 @@
 EVENT_ID,EVENT_NAME,PERCENTAGE_DISCOUNT,START_DATE,END_DATE,DESCRIPTION,STATUS
-E123512,Testing,20,01/01/2022,31/12/2022,Sale 20%,true
-E126124,Testing,20,01/01/2022,31/12/2022,Sale 20%,true
-E489705,Testing,14,11/5/2020,11/6/2021,Sale 14%,false
+E654681,Happy New Year 2022,20,1/1/2022,3/1/2022,Sale 20%,false
+E785298,Valentine's Day,15,14/2/2022,16/2/2022,Sale 15%,false
+E409999,Vietnamese Independence Day,25,2/9/2022,4/9/2022,Sale 25%,false
+E763532,Vietnamese Teachers' Day,25,20/11/2022,23/11/2022,Sale 25%,false
+E956244,Vietnam Red Cross Society Day,30,23/11/2022,24/11/2022,Sale 30%,false
+E892295,World's AIDS Day,15,1/12/2022,2/12/2022,Sale 15%,false
+E785064,Merry Christmas 2022,25,24/12/2022,26/12/2022,Sale 25%,false

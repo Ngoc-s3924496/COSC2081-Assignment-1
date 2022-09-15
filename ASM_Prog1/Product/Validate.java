@@ -5,7 +5,7 @@ import java.util.List;
 public class Validate
 {
     public Validate() {}
-    public boolean checkCategory(String input)
+    public static boolean checkCategory(String input)
     {
         boolean categoryCheck = false;
         Category category = new Category();
@@ -21,7 +21,7 @@ public class Validate
         return categoryCheck;
     }
 
-    public boolean checkUnit(String input)
+    public static boolean checkUnit(String input)
     {
         boolean unitCheck = false;
         String[] unitList = {"item", "box", "tube", "packet", "bottle", "can"};
@@ -36,13 +36,9 @@ public class Validate
         return unitCheck;
     }
 
-    public boolean checkQuantity(String input)
+    public static boolean checkNumber(String input)
     {
         String numericList = "[0-9]*";
-        return input.matches(numericList);
-    }
-    public boolean checkPrice(String input) {
-        String numericList = "[0-9]*";
-        return input.matches(numericList);
+        return !input.matches(numericList);
     }
 }

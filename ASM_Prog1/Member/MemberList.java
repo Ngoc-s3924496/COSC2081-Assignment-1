@@ -9,7 +9,7 @@ public class MemberList {
     private static final String delimiter = ",";
     private static ArrayList<Member> memberList = new ArrayList<>();
     private ArrayList<Member> setMemberList() throws IOException {
-        String filePath = "Data/members.csv";
+        String filePath = "src/Data/members.csv";
         return MemberList.readFile(filePath);
     }
     public MemberList() throws IOException {
@@ -67,7 +67,7 @@ public class MemberList {
     }
     public void saveToCSV() throws IOException
     {
-        File fileSrc = new File("Data/members.csv");
+        File fileSrc = new File("src/Data/members.csv");
         FileWriter fileWriterSrc = new FileWriter(fileSrc);
         fileWriterSrc.write("USER_ID,USERNAME,PASSWORD,FULL_NAME,PHONE_NUMBER,MEMBERSHIP_RANK,TOTAL_PAID" + "\n");
         for (Member member : memberList)
