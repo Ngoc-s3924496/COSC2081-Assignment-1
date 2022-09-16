@@ -22,6 +22,8 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class MemberCLI extends Customer {
+
+    //THis method allows member to view their account information
     public void viewAccountInfo(Member member){
         System.out.println("UserID: " + member.getUserID());
         System.out.println("Username : " + member.getUserName());
@@ -41,6 +43,8 @@ public class MemberCLI extends Customer {
         String userID = member.getUserID();
         Order.getOrderByOrderID(userID);
     }
+
+    //this method allow user to create an order
     public void makeOrder(Member member, ProductList productList, OrderList orderList,
                           MemberList memberList){
         Scanner inputObj = new Scanner(System.in);

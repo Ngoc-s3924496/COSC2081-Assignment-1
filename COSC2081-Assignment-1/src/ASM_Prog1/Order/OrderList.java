@@ -30,6 +30,8 @@ public class OrderList {
     public static ArrayList<Order> getOrderList() {
         return orderList;
     }
+
+    //This method allows us to read data from a CSV file and store it in an array list of that corresponding class.
     private static ArrayList<Order> readFile(String csvFile) throws IOException
     {
         ArrayList<Order> finalArr = new ArrayList<>();

@@ -36,6 +36,7 @@ public class Main
         pageStart(productList, orderList, eventList, memberList);
     }
 
+    //Start page of the shop interface
     public static void pageStart(ProductList productList, OrderList orderList, EventList eventList,
                                  MemberList memberList) throws IOException, URISyntaxException, ParseException
     {
@@ -78,6 +79,7 @@ public class Main
         }
     }
 
+    //Start page of an admin interface
     public static void pageAdmin(ProductList productList, OrderList orderList, EventList eventList,
                                  MemberList memberList, int verified) throws IOException, URISyntaxException,
             ParseException
@@ -198,6 +200,7 @@ public class Main
         }
     }
 
+    //Start page of a customer interface
     public static void pageCustomer(ProductList productList, OrderList orderList, EventList eventList,
                                     MemberList memberList) throws IOException, URISyntaxException, ParseException
     {
@@ -259,6 +262,7 @@ public class Main
         }
     }
 
+    //Start page of a member interface
     public static void pageMember(Member member, ProductList productList, OrderList orderList, EventList eventList,
                                   MemberList memberList) throws IOException, URISyntaxException, ParseException
     {

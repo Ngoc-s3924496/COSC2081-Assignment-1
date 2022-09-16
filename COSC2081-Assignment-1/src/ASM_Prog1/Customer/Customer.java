@@ -16,6 +16,7 @@ import java.util.*;
 public class Customer {
 
     public Customer() {}
+    // this method ask users to enter the information to register a membership
     public void registerMembership(MemberList memberList) {
         Member member = new Member("0");
         Scanner inputObj = new Scanner(System.in);
@@ -50,6 +51,8 @@ public class Customer {
         Member newMember = new Member(username,password,fullName,phoneNumber,"None", 0);
         memberList.addNewMember(newMember);
     }
+
+    //This method ask user to enter username and password to login as a member
     public Member logIn(){
         Scanner inputObj = new Scanner(System.in);
         System.out.println("Enter your username");

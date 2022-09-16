@@ -19,6 +19,8 @@ public class Member extends Customer {
     public Member(String userID) {
         this.userID = userID;
     }
+
+    //This method supports registering a member
     public Member(String userName, String password, String fullName, String phoneNumber, String membershipRanking,
                   int totalPaid) {
         String ID = "U" + ((int) (Math.random() * 999999) + 1);

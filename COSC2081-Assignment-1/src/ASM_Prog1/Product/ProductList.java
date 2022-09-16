@@ -34,7 +34,7 @@ public class ProductList
         return productList;
     }
 
-
+    //This method allows us to read data from a CSV file and store it in an array list of that corresponding class.
     private static ArrayList<Product> readFile(String csvFile) throws IOException
     {
         ArrayList<Product> finalArr = new ArrayList<>();

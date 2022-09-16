@@ -25,6 +25,7 @@ public class Product
         this.productName = productName;
     }
 
+    //THis method supports creating a new product
     public Product(String productName, String category, String unit, int quantity, int price)
     {
         String ID = "P" + ((int) (Math.random() * 999999) + 1);
@@ -38,6 +39,8 @@ public class Product
         this.quantity = quantity;
         this.price = price;
     }
+
+    //this method support searching a new product using any related information
     public static void searchProduct(String productInfo){
         ArrayList<Product> productSearch = new ArrayList<>();
         for (Product product: ProductList.getProductList()){

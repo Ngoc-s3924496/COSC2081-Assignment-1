@@ -14,6 +14,7 @@ public class Daily {
 
     private final int revenue;
 
+    //This method return the daily revenue of the shop
     public Daily(String date, OrderList orderList){
 
         ArrayList<Order> executedOrder = Order.getOrderByDate(date);

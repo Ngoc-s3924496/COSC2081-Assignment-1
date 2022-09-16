@@ -21,6 +21,8 @@ public class Order {
         this.orderID = orderID;
         this.userID = userID;
     }
+
+    //This method supports creating an order
     public Order(String status, String userID, String userName, String product, int quantity,
                  int totalPaid, boolean eventEffect, String dateTime) {
         String orderID = "O" + ((int) (Math.random() * 999999) + 1);
@@ -75,6 +77,7 @@ public class Order {
         }
     }
 
+    //this method returns the order ID based on the input ID
     public static void getOrderByOrderID(String userID) {
         Scanner inputObj = new Scanner(System.in);
         ArrayList<Order> userOrder = new ArrayList<>();

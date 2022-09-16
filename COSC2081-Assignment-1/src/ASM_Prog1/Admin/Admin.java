@@ -49,6 +49,7 @@ public class Admin
         productList.displayProductList();
     }
 
+    //this method allow admin to input a new product as well as its information
     public void addProduct(ProductList productList)
     {
         Category ctg = new Category();
@@ -104,6 +105,7 @@ public class Admin
         productList.addNewProduct(newProduct);
     }
 
+    // this method removes a product from the product list
     public void removeProduct(ProductList productList)
     {
         Scanner inputObj = new Scanner(System.in);
@@ -135,6 +137,7 @@ public class Admin
         memberList.displayMemberList();
     }
 
+    // this method allows admin to add event and its effect to the shop
     public void addEvent(EventList eventList) throws ParseException
     {
         Scanner inputObj = new Scanner(System.in);
@@ -191,6 +194,7 @@ public class Admin
         orderList.removeOrder(orderID);
     }
 
+    //this method allows admin to access the database and change the product price
     public void updateProductPrice(ProductList productList)
     {
         Scanner inputObj = new Scanner(System.in);
@@ -201,6 +205,7 @@ public class Admin
         productList.updatePrice(productID, price);
     }
 
+    //this method allows admin to access and update status of any order
     public void updateOrderStatus(OrderList orderList)
     {
         Scanner inputObj = new Scanner(System.in);
@@ -211,6 +216,7 @@ public class Admin
         orderList.updateStatus(orderID, status);
     }
 
+    //this method allows admin to get the daily revenue of the exact day
     public void getDailyRevenue(OrderList orderList)
     {
         Scanner inputObj = new Scanner(System.in);

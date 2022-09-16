@@ -28,6 +28,8 @@ public class EventList {
     public static ArrayList<Event> getEventList() {
         return eventList;
     }
+
+    //This method allows us to read data from a CSV file and store it in an array list of that corresponding class.
     public static ArrayList<Event> readFile(String csvFile) throws IOException, ParseException {
         ArrayList<Event> finalArr = new ArrayList<>();
         File file = new File(csvFile);

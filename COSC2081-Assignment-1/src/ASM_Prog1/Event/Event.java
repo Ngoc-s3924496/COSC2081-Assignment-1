@@ -29,6 +29,7 @@ public class Event
         this.eventID = eventID;
     }
 
+    //This method add a newly created event to the database
     public Event(String eventName, int percentageDiscount, String startDate, String endDate,
                  String eventDescription) throws ParseException {
         String ID = "E" + ((int) (Math.random() * 999999) + 1);

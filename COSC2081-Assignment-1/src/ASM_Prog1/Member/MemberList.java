@@ -26,6 +26,8 @@ public class MemberList {
     public static ArrayList<Member> getMemberList() {
         return memberList;
     }
+
+    //This method allows us to read data from a CSV file and store it in an array list of that corresponding class.
     private static ArrayList<Member> readFile(String csvFile) throws IOException {
         ArrayList<Member> finalArr = new ArrayList<>();
         File file = new File(csvFile);
