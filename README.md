@@ -14,4 +14,4 @@ Doan Khanh Luan (s3926375);
 
 Github repo: https://github.com/Ngoc-s3924496/COSC2081-Assignment-1.git
 
-Video link: 
+Video link: https://www.youtube.com/watch?v=TtTlOsW_6B8
